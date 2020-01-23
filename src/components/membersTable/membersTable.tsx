@@ -22,7 +22,7 @@ export const MembersTableComponent = (props: Props) => {
                 display: "inline-flex",
             }}>
                 <button onClick={loadMembers}>Load</button>
-                <input type="text" value={organizationName}/>
+                <input type="text" value={organizationName} onChange={(event) => setOrganizationName(event.target.value)}/>
             </div>
             <table className="table">
                 <thead>
