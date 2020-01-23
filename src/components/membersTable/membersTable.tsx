@@ -1,8 +1,12 @@
 import * as React from "react";
 import {MemberEntity} from "../../model/member";
 import {memberAPI} from "../../api/memberAPI";
-import {MemberRow} from "./memberRow";
 import {MemberHead} from "./memberHead";
+import {TableBody} from "@material-ui/core";
+import Paper from "@material-ui/core/Paper";
+import TableContainer from "@material-ui/core/TableContainer";
+import Table from "@material-ui/core/Table";
+import {MemberRow} from "./memberRow";
 
 interface Props {
 }
@@ -24,16 +28,18 @@ export const MembersTableComponent = (props: Props) => {
                 <button onClick={loadMembers}>Load</button>
                 <input type="text" value={organizationName} onChange={(event) => setOrganizationName(event.target.value)}/>
             </div>
-            <table className="table">
-                <thead>
-                <MemberHead/>
-                </thead>
-                <tbody>
-                {members.map((member: MemberEntity) => (
-                    <MemberRow key={member.id} member={member}/>
-                ))}
-                </tbody>
-            </table>
+            <Paper>
+                <TableContainer>
+                    <Table stickyHeader aria-label="sticky table">
+                        <MemberHead/>
+                        <TableBody>
+                            {members.map((member: MemberEntity) => (
+                                <MemberRow key={member.id} member={member}/>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </Paper>
         </div>
     );
 };
