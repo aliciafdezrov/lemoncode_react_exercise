@@ -12,7 +12,7 @@ export const MembersTableComponent = (props: Props) => {
     const [organizationName, setOrganizationName] = React.useState<string>("lemoncode");
 
     const loadMembers = () => {
-        memberAPI.getAllMembers("lemoncode").then(members => setMembers(members));
+        memberAPI.getAllMembers(organizationName).then(members => setMembers(members));
     };
 
     return (
