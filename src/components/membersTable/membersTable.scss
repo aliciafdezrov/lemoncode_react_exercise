@@ -1,0 +1,9 @@
+.root {
+  display: inline-flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.searcher-row {
+  align-self: flex-end;
+}
