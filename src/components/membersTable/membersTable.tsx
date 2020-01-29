@@ -12,6 +12,11 @@ import TableFooter from "@material-ui/core/TableFooter";
 import TableRow from "@material-ui/core/TableRow";
 import TablePagination from "@material-ui/core/TablePagination";
 import TablePaginationActions from "@material-ui/core/TablePagination/TablePaginationActions";
+import TextField from "@material-ui/core/TextField";
+import IconButton from "@material-ui/core/IconButton";
+import SearchIcon from '@material-ui/icons/Search';
+
+const classes = require('./membersTable.scss');
 
 interface Props {
 }
@@ -48,45 +53,53 @@ export const MembersTableComponent = (props: Props) => {
     };
 
     return (
-        <div className="row">
-            <h2> Members Page</h2>
-            <div style={{
-                display: "inline-flex",
-            }}>
-                <button onClick={loadMembers}>Load</button>
-                <input type="text" value={organizationName} onChange={(event) => setOrganizationName(event.target.value)}/>
-            </div>
-            <Paper>
-                <TableContainer>
-                    <Table stickyHeader aria-label="sticky table">
-                        <MemberHead/>
-                        <TableBody>
-                            {members.map((member: MemberEntity) => (
-                                <MemberRow key={member.id} member={member}/>
-                            ))}
-                        </TableBody>
+        <div className={classes.root}>
+            <h1> Members Page</h1>
+                <div className={classes.searcherRow}>
+                    <TextField
+                        required
+                        id="filled-required"
+                        label="Required"
+                        defaultValue={organizationName}
+                        value={organizationName}
+                        size="small"
+                        onChange={(event) => setOrganizationName(event.target.value)}
+                    />
+                    <IconButton aria-label="search" onClick={loadMembers}>
+                        <SearchIcon/>
+                    </IconButton>
+                </div>
+                <Paper>
+                    <TableContainer>
+                        <Table stickyHeader aria-label="sticky table">
+                            <MemberHead/>
+                            <TableBody>
+                                {members.map((member: MemberEntity) => (
+                                    <MemberRow key={member.id} member={member}/>
+                                ))}
+                            </TableBody>
 
-                        <TableFooter>
-                            <TableRow>
-                                <TablePagination
-                                    rowsPerPageOptions={[2, 5, 10, { label: 'All', value: -1 }]}
-                                    colSpan={3}
-                                    count={totalMembers}
-                                    rowsPerPage={rowsPerPage}
-                                    page={page}
-                                    SelectProps={{
-                                        inputProps: { 'aria-label': 'rows per page' },
-                                        native: true,
-                                    }}
-                                    onChangePage={handleChangePage}
-                                    onChangeRowsPerPage={handleChangeRowsPerPage}
-                                    ActionsComponent={TablePaginationActions}
-                                />
-                            </TableRow>
-                        </TableFooter>
-                    </Table>
-                </TableContainer>
-            </Paper>
+                            <TableFooter>
+                                <TableRow>
+                                    <TablePagination
+                                        rowsPerPageOptions={[2, 5, 10, {label: 'All', value: -1}]}
+                                        colSpan={3}
+                                        count={totalMembers}
+                                        rowsPerPage={rowsPerPage}
+                                        page={page}
+                                        SelectProps={{
+                                            inputProps: {'aria-label': 'rows per page'},
+                                            native: true,
+                                        }}
+                                        onChangePage={handleChangePage}
+                                        onChangeRowsPerPage={handleChangeRowsPerPage}
+                                        ActionsComponent={TablePaginationActions}
+                                    />
+                                </TableRow>
+                            </TableFooter>
+                        </Table>
+                    </TableContainer>
+                </Paper>
         </div>
     );
 };
