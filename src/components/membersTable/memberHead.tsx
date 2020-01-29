@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { MemberEntity } from '../../model/member';
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
@@ -22,4 +21,4 @@ export const MemberHead = () =>
                 </TableCell>
             ))}
         </TableRow>
-    </TableHead>
+    </TableHead>;
