@@ -1,9 +1,17 @@
 .root {
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+  align-items: center;
 }
 
 .searcher-row {
   align-self: flex-end;
+}
+
+.content-row {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  width: 80%;
 }

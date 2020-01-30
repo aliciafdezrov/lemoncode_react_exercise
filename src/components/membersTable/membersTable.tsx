@@ -56,6 +56,7 @@ export const MembersTableComponent = (props: Props) => {
     return (
         <div className={classes.root}>
             <h1> Members Page</h1>
+            <div className={classes.contentRow}>
                 <div className={classes.searcherRow}>
                     <TextField
                         required
@@ -88,6 +89,7 @@ export const MembersTableComponent = (props: Props) => {
                         </Table>
                     </TableContainer>
                 </Paper>
+            </div>
         </div>
     );
 };
