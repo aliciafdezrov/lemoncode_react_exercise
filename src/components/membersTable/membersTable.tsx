@@ -15,6 +15,7 @@ import TablePaginationActions from "@material-ui/core/TablePagination/TablePagin
 import TextField from "@material-ui/core/TextField";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from '@material-ui/icons/Search';
+import {MemberFooter} from "./memberFooter";
 
 const classes = require('./membersTable.scss');
 
@@ -79,24 +80,11 @@ export const MembersTableComponent = (props: Props) => {
                                 ))}
                             </TableBody>
 
-                            <TableFooter>
-                                <TableRow>
-                                    <TablePagination
-                                        rowsPerPageOptions={[2, 5, 10, {label: 'All', value: -1}]}
-                                        colSpan={3}
-                                        count={totalMembers}
-                                        rowsPerPage={rowsPerPage}
-                                        page={page}
-                                        SelectProps={{
-                                            inputProps: {'aria-label': 'rows per page'},
-                                            native: true,
-                                        }}
-                                        onChangePage={handleChangePage}
-                                        onChangeRowsPerPage={handleChangeRowsPerPage}
-                                        ActionsComponent={TablePaginationActions}
-                                    />
-                                </TableRow>
-                            </TableFooter>
+                            <MemberFooter totalCount={totalMembers}
+                                          rowsPerPage={rowsPerPage}
+                                          page={page}
+                                          handleChangePage={handleChangePage}
+                                          handleChangeRowsPerPage={handleChangeRowsPerPage}/>
                         </Table>
                     </TableContainer>
                 </Paper>
