@@ -62,7 +62,6 @@ export const MembersTableComponent = (props: Props) => {
                         required
                         id="filled-required"
                         label="Required"
-                        defaultValue={organizationName}
                         value={organizationName}
                         size="small"
                         onChange={(event) => setOrganizationName(event.target.value)}
