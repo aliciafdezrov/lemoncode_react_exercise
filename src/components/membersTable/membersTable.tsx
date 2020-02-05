@@ -55,42 +55,40 @@ export const MembersTableComponent = (props: Props) => {
     };
 
     return (
-        <div className={classes.root}>
-            <div className={classes.contentRow}>
-                <div className={classes.searcherRow}>
-                    <TextField
-                        required
-                        id="filled-required"
-                        label="Required"
-                        value={organizationName}
-                        size="small"
-                        onChange={(event) => setOrganizationName(event.target.value)}
-                    />
-                    <IconButton aria-label="search" onClick={loadMembers}>
-                        <SearchIcon/>
-                    </IconButton>
-                </div>
-                <LoadingIndicator>
-                    <Paper>
-                        <TableContainer>
-                            <Table stickyHeader aria-label="sticky table">
-                                <MemberHead/>
-                                <TableBody>
-                                    {members.map((member: MemberEntity) => (
-                                        <MemberRow key={member.id} member={member}/>
-                                    ))}
-                                </TableBody>
-
-                                <MemberFooter totalCount={totalMembers}
-                                              rowsPerPage={rowsPerPage}
-                                              page={page}
-                                              handleChangePage={handleChangePage}
-                                              handleChangeRowsPerPage={handleChangeRowsPerPage}/>
-                            </Table>
-                        </TableContainer>
-                    </Paper>
-                </LoadingIndicator>
+        <div className={classes.contentRow}>
+            <div className={classes.searcherRow}>
+                <TextField
+                    required
+                    id="filled-required"
+                    label="Required"
+                    value={organizationName}
+                    size="small"
+                    onChange={(event) => setOrganizationName(event.target.value)}
+                />
+                <IconButton aria-label="search" onClick={loadMembers}>
+                    <SearchIcon/>
+                </IconButton>
             </div>
+            <LoadingIndicator>
+                <Paper>
+                    <TableContainer>
+                        <Table stickyHeader aria-label="sticky table">
+                            <MemberHead/>
+                            <TableBody>
+                                {members.map((member: MemberEntity) => (
+                                    <MemberRow key={member.id} member={member}/>
+                                ))}
+                            </TableBody>
+
+                            <MemberFooter totalCount={totalMembers}
+                                          rowsPerPage={rowsPerPage}
+                                          page={page}
+                                          handleChangePage={handleChangePage}
+                                          handleChangeRowsPerPage={handleChangeRowsPerPage}/>
+                        </Table>
+                    </TableContainer>
+                </Paper>
+            </LoadingIndicator>
         </div>
     );
 };
