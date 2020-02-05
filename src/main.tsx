@@ -2,8 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {HashRouter, Route, Switch} from "react-router-dom";
 import {switchRoutes} from "./core";
-import {MembersTableComponent} from "./components/membersTable";
-import {MemberCardComponent} from "./components/memberCard";
+import {MemberCollectionScene, MemberInfoScene} from "./scenes";
 
 ReactDOM.render(
     <HashRouter>
@@ -11,11 +10,11 @@ ReactDOM.render(
             <Route
                 exact={true}
                 path={[switchRoutes.root, switchRoutes.membersCollection]}
-                component={MembersTableComponent}
+                component={MemberCollectionScene}
             />
             <Route
                 path={switchRoutes.memberInfo}
-                component={MemberCardComponent}
+                component={MemberInfoScene}
             />
         </Switch>
     </HashRouter>,
