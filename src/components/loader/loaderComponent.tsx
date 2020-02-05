@@ -5,8 +5,7 @@ import Loader from 'react-loader-spinner';
 export const LoadingIndicator = props => {
     const {promiseInProgress} = usePromiseTracker();
 
-    return (
-        promiseInProgress &&
+    return (promiseInProgress ?
         <div
             style={{
                 width: "100%",
@@ -16,7 +15,9 @@ export const LoadingIndicator = props => {
                 alignItems: "center"
             }}
         >
-            <Loader type="ThreeDots" color="#b103fc" height="100" width="100"/>
+            <Loader type="ThreeDots" color="#b103fc" height={100} width={100}/>
         </div>
+        :
+        <>{props.children}</>
     );
 };
