@@ -24,7 +24,7 @@ export const MembersTableComponent = (props: Props) => {
     const firstRender = useRef(true);
     const [members, setMembers] = React.useState<MemberEntity[]>([]);
     const [organizationName, setOrganizationName] = React.useState<string>("lemoncode");
-    const [rowsPerPage, setRowsPerPage] = React.useState<number>(2);
+    const [rowsPerPage, setRowsPerPage] = React.useState<number>(5);
     const [page, setPage] = React.useState<number>(0);
     const [totalMembers, setTotalMembers] = React.useState<number>(0);
 

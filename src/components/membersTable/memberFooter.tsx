@@ -19,7 +19,7 @@ export const MemberFooter = (props: Props) => {
     <TableFooter>
         <TableRow>
             <TablePagination
-                rowsPerPageOptions={[2, 5, 10, {label: 'All', value: -1}]}
+                rowsPerPageOptions={[5, 10, 15, {label: 'All', value: -1}]}
                 colSpan={3}
                 count={totalCount}
                 rowsPerPage={rowsPerPage}

@@ -10,14 +10,12 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import {red} from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import {useParams, useHistory} from 'react-router-dom';
-import {trackPromise} from "react-promise-tracker";
+import {useParams} from 'react-router-dom';
 import {memberAPI} from "../../api/memberAPI";
 import {createDefaultMemberEntity, MemberEntity} from "../../model/member";
+import {LoadingIndicator} from "../loader";
+import {trackPromise} from 'react-promise-tracker';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -55,7 +53,9 @@ export const MemberCardComponent = (props) => {
     }, []);
 
     const loadMemberInfo = () => {
-        memberAPI.getSingleMemberByLogin(params.id).then(member => setMemberInfo(member));
+        trackPromise(
+            memberAPI.getSingleMemberByLogin(params.id).then(member => setMemberInfo(member))
+        );
     };
 
 
@@ -64,41 +64,43 @@ export const MemberCardComponent = (props) => {
     };
 
     return (
-        <Card className={classes.root}>
-            <CardHeader
-                avatar={
-                    <Avatar aria-label="member-avatar" className={classes.avatar} src={memberInfo.avatar_url}/>
-                }
-                title={memberInfo.name}
-                subheader={memberInfo.location}
-            />
-            <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    {memberInfo.bio}
-                </Typography>
-            </CardContent>
-            <CardActions disableSpacing>
-                <IconButton
-                    className={clsx(classes.expand, {
-                        [classes.expandOpen]: expanded,
-                    })}
-                    onClick={handleExpandClick}
-                    aria-expanded={expanded}
-                    aria-label="show more"
-                >
-                    <ExpandMoreIcon/>
-                </IconButton>
-            </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <LoadingIndicator type="Bars">
+            <Card className={classes.root}>
+                <CardHeader
+                    avatar={
+                        <Avatar aria-label="member-avatar" className={classes.avatar} src={memberInfo.avatar_url}/>
+                    }
+                    title={memberInfo.name}
+                    subheader={memberInfo.location}
+                />
                 <CardContent>
-                    <Typography paragraph>Company: {memberInfo.company}</Typography>
-                    <Typography paragraph>Followers: {memberInfo.followers}</Typography>
-                    <Typography paragraph>Following: {memberInfo.following}</Typography>
-                    <Typography paragraph>Created at: {memberInfo.created_at}</Typography>
-                    <Typography paragraph>Blog: {memberInfo.blog}</Typography>
-                    <Typography paragraph>Public repos: {memberInfo.public_repos}</Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        {memberInfo.bio}
+                    </Typography>
                 </CardContent>
-            </Collapse>
-        </Card>
+                <CardActions disableSpacing>
+                    <IconButton
+                        className={clsx(classes.expand, {
+                            [classes.expandOpen]: expanded,
+                        })}
+                        onClick={handleExpandClick}
+                        aria-expanded={expanded}
+                        aria-label="show more"
+                    >
+                        <ExpandMoreIcon/>
+                    </IconButton>
+                </CardActions>
+                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                    <CardContent>
+                        <Typography paragraph>Company: {memberInfo.company}</Typography>
+                        <Typography paragraph>Followers: {memberInfo.followers}</Typography>
+                        <Typography paragraph>Following: {memberInfo.following}</Typography>
+                        <Typography paragraph>Created at: {memberInfo.created_at}</Typography>
+                        <Typography paragraph>Blog: {memberInfo.blog}</Typography>
+                        <Typography paragraph>Public repos: {memberInfo.public_repos}</Typography>
+                    </CardContent>
+                </Collapse>
+            </Card>
+        </LoadingIndicator>
     );
 };

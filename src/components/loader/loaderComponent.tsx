@@ -2,7 +2,7 @@ import * as React from "react";
 import {usePromiseTracker} from "react-promise-tracker";
 import Loader from 'react-loader-spinner';
 
-export const LoadingIndicator = props => {
+export const LoadingIndicator = (props) => {
     const {promiseInProgress} = usePromiseTracker();
 
     return (promiseInProgress ?
@@ -15,9 +15,13 @@ export const LoadingIndicator = props => {
                 alignItems: "center"
             }}
         >
-            <Loader type="ThreeDots" color="#b103fc" height={100} width={100}/>
+            <Loader type={props.type} color="#b103fc" height={100} width={100}/>
         </div>
         :
         <>{props.children}</>
     );
+};
+
+LoadingIndicator.defaultProps = {
+    type: "ThreeDots",
 };
