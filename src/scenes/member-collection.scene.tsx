@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {MembersTableComponent} from "../components/membersTable";
+import {MembersTableComponent} from "components";
 
 export const MemberCollectionScene = () => (
     <>

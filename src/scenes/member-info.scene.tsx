@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {MemberCardComponent} from "../components/memberCard";
+import {MemberCardComponent} from "components";
 
 export const MemberInfoScene = () => (
     <>

@@ -8,7 +8,7 @@ import {linkRoutes} from "../../core";
 import {Link} from "react-router-dom";
 
 export const MemberRow = (props: { member: MemberEntity }) =>
-    <TableRow hover role="checkbox" tabIndex={-1} key={props.member.id} onClick={() => console.log(props.member.id)}>
+    <TableRow hover role="checkbox" tabIndex={-1} key={props.member.id}>
         {columns.map(column => {
             const value = props.member[column.id];
             if (column.id == "avatar_url")
@@ -17,7 +17,7 @@ export const MemberRow = (props: { member: MemberEntity }) =>
                 </TableCell>)
             else if (column.id == "navigation_link")
                 return (<TableCell key={column.id}>
-                    <Link to={linkRoutes.memberInfo}>Member details</Link>
+                    <Link to={linkRoutes.memberInfo(props.member.login)}>Member details</Link>
                 </TableCell>)
             else
                 return (<TableCell key={column.id}>

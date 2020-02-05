@@ -14,8 +14,6 @@ import SearchIcon from '@material-ui/icons/Search';
 import {MemberFooter} from "./memberFooter";
 import {trackPromise} from 'react-promise-tracker';
 import {LoadingIndicator} from "../loader";
-import {linkRoutes} from "../../core";
-import {Link} from "react-router-dom";
 
 const classes = require('./membersTable.scss');
 
