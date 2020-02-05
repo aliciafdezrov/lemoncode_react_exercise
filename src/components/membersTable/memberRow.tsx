@@ -6,7 +6,7 @@ import TableRow from "@material-ui/core/TableRow";
 import {Avatar} from "@material-ui/core";
 
 export const MemberRow = (props: {member : MemberEntity}) =>
-    <TableRow hover role="checkbox" tabIndex={-1} key={props.member.id}>
+    <TableRow hover role="checkbox" tabIndex={-1} key={props.member.id} onClick={() =>console.log(props.member.id)}>
         {columns.map(column => {
             const value = props.member[column.id];
             return ( (column.id == "avatar_url") ?

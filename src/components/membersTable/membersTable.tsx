@@ -14,6 +14,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import {MemberFooter} from "./memberFooter";
 import {trackPromise} from 'react-promise-tracker';
 import {LoadingIndicator} from "../loader";
+import {linkRoutes} from "../../core";
+import {Link} from "react-router-dom";
 
 const classes = require('./membersTable.scss');
 
@@ -56,7 +58,6 @@ export const MembersTableComponent = (props: Props) => {
 
     return (
         <div className={classes.root}>
-            <h1> Members Page</h1>
             <div className={classes.contentRow}>
                 <div className={classes.searcherRow}>
                     <TextField
