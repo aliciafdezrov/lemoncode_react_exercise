@@ -4,9 +4,10 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 
 export const columns = [
-    { id: 'avatar_url', label: 'Avatar', minWidth: 170 },
-    { id: 'id', label: 'Id', minWidth: 170 },
-    { id: 'login', label: 'Name', minWidth: 100 }
+    { id: 'avatar_url', label: 'Avatar', minWidth: 50 },
+    { id: 'id', label: 'Id', minWidth: 100 },
+    { id: 'login', label: 'Name', minWidth: 100 },
+    { id: 'navigation_link', label: '+Info', minWidth: 100}
 ];
 
 export const MemberHead = () =>
