@@ -8,14 +8,11 @@ import Paper from "@material-ui/core/Paper";
 import TableContainer from "@material-ui/core/TableContainer";
 import Table from "@material-ui/core/Table";
 import {MemberRow} from "./memberRow";
-import TableFooter from "@material-ui/core/TableFooter";
-import TableRow from "@material-ui/core/TableRow";
-import TablePagination from "@material-ui/core/TablePagination";
-import TablePaginationActions from "@material-ui/core/TablePagination/TablePaginationActions";
 import TextField from "@material-ui/core/TextField";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from '@material-ui/icons/Search';
 import {MemberFooter} from "./memberFooter";
+import { trackPromise } from 'react-promise-tracker';
 
 const classes = require('./membersTable.scss');
 
@@ -24,7 +21,6 @@ interface Props {
 
 export const MembersTableComponent = (props: Props) => {
     const firstRender = useRef(true);
-
     const [members, setMembers] = React.useState<MemberEntity[]>([]);
     const [organizationName, setOrganizationName] = React.useState<string>("lemoncode");
     const [rowsPerPage, setRowsPerPage] = React.useState<number>(2);
@@ -33,11 +29,15 @@ export const MembersTableComponent = (props: Props) => {
 
     const loadMembers = () => {
         setPage(0);
-        memberAPI.getAllMembers(organizationName).then(members => setTotalMembers(members.length));
+        trackPromise(
+        memberAPI.getAllMembers(organizationName).then(members => setTotalMembers(members.length))
+        );
     };
 
     const loadMembersPaging = () => {
-        memberAPI.getMembersPaging(organizationName, page + 1, rowsPerPage).then(members => setMembers(members));
+        trackPromise(
+        memberAPI.getMembersPaging(organizationName, page + 1, rowsPerPage).then(members => setMembers(members))
+        );
     };
 
     useEffect(() => {
