@@ -13,6 +13,7 @@ import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from '@material-ui/icons/Search';
 import {MemberFooter} from "./memberFooter";
 import { trackPromise } from 'react-promise-tracker';
+import {LoadingIndicator} from "../loader";
 
 const classes = require('./membersTable.scss');
 
@@ -74,6 +75,7 @@ export const MembersTableComponent = (props: Props) => {
                     <TableContainer>
                         <Table stickyHeader aria-label="sticky table">
                             <MemberHead/>
+                            <LoadingIndicator/>
                             <TableBody>
                                 {members.map((member: MemberEntity) => (
                                     <MemberRow key={member.id} member={member}/>
