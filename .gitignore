@@ -8,3 +8,13 @@ github-members-exercise/*/src/**/*.js
 github-members-exercise/*/src/**/*.js.map
 github-members-exercise/*/coverage/
 .DS_Store
+
+hotel-collection-exercise/node_modules
+hotel-collection-exercise/dist/
+hotel-collection-exercise/.idea/
+hotel-collection-exercise/.DS_Store
+hotel-collection-exercise/typings/
+hotel-collection-exercise/*.orig
+hotel-collection-exercise/*/src/**/*.js
+hotel-collection-exercise/*/src/**/*.js.map
+hotel-collection-exercise/*/coverage/
