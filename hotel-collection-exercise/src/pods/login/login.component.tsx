@@ -8,6 +8,10 @@ import { TextField } from 'common/components/forms';
 import Button from '@material-ui/core/Button';
 import { LoginEntityVm } from './login.vm';
 import { formValidation } from './login.validation';
+import Snackbar from "@material-ui/core/Snackbar";
+import {IconButton} from "@material-ui/core";
+import CloseIcon from '@material-ui/icons/Close';
+import SnackbarContent from "@material-ui/core/SnackbarContent";
 
 const useStyles = makeStyles({
   formContainer: {
@@ -20,15 +24,34 @@ const useStyles = makeStyles({
 interface Props {
   onLogin: (loginInfo: LoginEntityVm) => void;
   initialLogin: LoginEntityVm;
+  snackBarIsOpen: boolean;
+  handleCloseSnackBar: () => void;
 }
 
 export const LoginComponent: React.FunctionComponent<Props> = props => {
   const classes = useStyles(props);
-  const { onLogin, initialLogin } = props;
+  const { onLogin, initialLogin, snackBarIsOpen, handleCloseSnackBar } = props;
 
   return (
     <Card>
       <CardHeader title="Login" />
+      <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                open={snackBarIsOpen}
+                onClose={handleCloseSnackBar}>
+        <SnackbarContent
+            style={{
+                backgroundColor:'#f2453d',
+            }}
+            message="Invalid credentials, use admin/test"
+            action={
+                <React.Fragment>
+                    <IconButton size="small" aria-label="close" color="inherit" onClick={handleCloseSnackBar}>
+                        <CloseIcon fontSize="small" />
+                    </IconButton>
+                </React.Fragment>
+            }
+        />
+      </Snackbar>
       <CardContent>
         <div className={classes.formContainer}>
           <Form
