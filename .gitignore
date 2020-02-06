@@ -18,3 +18,4 @@ hotel-collection-exercise/*.orig
 hotel-collection-exercise/*/src/**/*.js
 hotel-collection-exercise/*/src/**/*.js.map
 hotel-collection-exercise/*/coverage/
+hotel-collection-exercise/.awcache/
