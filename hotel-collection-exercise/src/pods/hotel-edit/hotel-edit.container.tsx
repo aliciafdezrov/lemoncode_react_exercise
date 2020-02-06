@@ -1,6 +1,11 @@
 import * as React from 'react';
 import {HotelEditComponent} from "./hotel-edit.component";
 
-export const HotelEditContainer = () => {
-    return <HotelEditComponent/>;
+interface Props {
+    hotelId: string;
+}
+
+export const HotelEditContainer = (props: Props) => {
+    const {hotelId} = props;
+    return <HotelEditComponent hotelId={hotelId}/>;
 };
