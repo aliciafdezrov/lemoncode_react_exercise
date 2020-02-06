@@ -1,17 +1,14 @@
 import * as React from 'react';
-import { Form, Field } from 'react-final-form';
-import { makeStyles } from '@material-ui/core/styles';
+import {Field, Form} from 'react-final-form';
+import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
-import { TextField } from 'common/components/forms';
+import {TextField} from 'common/components/forms';
 import Button from '@material-ui/core/Button';
-import { LoginEntityVm } from './login.vm';
-import { formValidation } from './login.validation';
-import Snackbar from "@material-ui/core/Snackbar";
-import {IconButton} from "@material-ui/core";
-import CloseIcon from '@material-ui/icons/Close';
-import SnackbarContent from "@material-ui/core/SnackbarContent";
+import {LoginEntityVm} from './login.vm';
+import {formValidation} from './login.validation';
+import {SnackBar} from "../../common/components/snackbar";
 
 const useStyles = makeStyles({
   formContainer: {
@@ -35,23 +32,10 @@ export const LoginComponent: React.FunctionComponent<Props> = props => {
   return (
     <Card>
       <CardHeader title="Login" />
-      <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                open={snackBarIsOpen}
-                onClose={handleCloseSnackBar}>
-        <SnackbarContent
-            style={{
-                backgroundColor:'#f2453d',
-            }}
-            message="Invalid credentials, use admin/test"
-            action={
-                <React.Fragment>
-                    <IconButton size="small" aria-label="close" color="inherit" onClick={handleCloseSnackBar}>
-                        <CloseIcon fontSize="small" />
-                    </IconButton>
-                </React.Fragment>
-            }
-        />
-      </Snackbar>
+        <SnackBar message={"Invalid credentials, use admin/test"}
+                  snackBarIsOpen={snackBarIsOpen}
+                  handleCloseSnackBar={handleCloseSnackBar}
+                  backgroundColor={'#f2453d'}/>
       <CardContent>
         <div className={classes.formContainer}>
           <Form
