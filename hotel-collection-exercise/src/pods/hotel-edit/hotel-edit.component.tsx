@@ -24,13 +24,20 @@ interface Props {
 export const HotelEditComponent: React.FunctionComponent<Props> = (props: Props) => {
     const {hotelId} = props;
 
+    const editHotelInfo = (propId, newValue) => {
+      console.log(propId, newValue)
+    };
+
     return (
         <div className={classes.container}>
             <div className={classes.rowContainer}>
                 <div className={classes.inputLabel}>
                     <InputLabel>Name</InputLabel>
                 </div>
-                <TextField fullWidth value={mockHotel.name}/>
+                <TextField fullWidth
+                           value={mockHotel.name}
+                           id="hotel-name"
+                           onChange={(event) => editHotelInfo(event.target.id, event.target.value)}/>
             </div>
 
             <div className={classes.rowContainer}>
@@ -42,7 +49,10 @@ export const HotelEditComponent: React.FunctionComponent<Props> = (props: Props)
                 <div className={classes.inputLabel}>
                     <InputLabel>Picture</InputLabel>
                 </div>
-                <TextField fullWidth value={mockHotel.picture}/>
+                <TextField fullWidth
+                           value={mockHotel.picture}
+                           onChange={(event) => editHotelInfo(event.target.id, event.target.value)}
+                           id="hotel-picture"/>
             </div>
 
             <div className={classes.rowContainer}>
@@ -50,8 +60,10 @@ export const HotelEditComponent: React.FunctionComponent<Props> = (props: Props)
                     <InputLabel>Rating</InputLabel>
                 </div>
                 <Rating
+                    id="hotel-rating"
                     name="hotel-rating"
                     value={mockHotel.rating}
+                    onChange={(event: any, value) => editHotelInfo(event.target.name, value)}
                 />
 
                 <div className={classes.inputLabel}>
@@ -59,7 +71,8 @@ export const HotelEditComponent: React.FunctionComponent<Props> = (props: Props)
                 </div>
                 <Select
                     labelId="city-selector"
-                    id="city-selector-hotel-edit-component"
+                    name="city-selector-hotel"
+                    onChange={(event) => editHotelInfo(event.target.name, event.target.value)}
                     value={0}
                 >
                     <MenuItem value={0}>Málaga</MenuItem>
@@ -76,6 +89,8 @@ export const HotelEditComponent: React.FunctionComponent<Props> = (props: Props)
                            value={mockHotel.description}
                            variant="outlined"
                            multiline
+                           onChange={(event) => editHotelInfo(event.target.id, event.target.value)}
+                           id="hotel-description"
                            rows="4"/>
             </div>
 
