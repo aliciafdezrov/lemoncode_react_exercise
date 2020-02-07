@@ -35,7 +35,7 @@ export const LoginComponent: React.FunctionComponent<Props> = props => {
         <SnackBar message={"Invalid credentials, use admin/test"}
                   snackBarIsOpen={snackBarIsOpen}
                   handleCloseSnackBar={handleCloseSnackBar}
-                  backgroundColor={'#f2453d'}/>
+                  severity={'error'}/>
       <CardContent>
         <div className={classes.formContainer}>
           <Form

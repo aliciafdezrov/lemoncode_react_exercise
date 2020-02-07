@@ -1,8 +1,6 @@
 import * as React from 'react';
-import SnackbarContent from "@material-ui/core/SnackbarContent";
-import {IconButton} from "@material-ui/core";
-import Close from '@material-ui/icons/Close';
 import Snackbar from "@material-ui/core/Snackbar";
+import {Alert} from "@material-ui/lab";
 
 interface Props {
     snackBarIsOpen: boolean;
@@ -10,29 +8,18 @@ interface Props {
     message: string;
     verticalAnchor?: 'top' | 'bottom';
     horizontalAnchor?: 'left' | 'center' | 'right';
-    backgroundColor?: string;
+    severity?: 'success' | 'info' | 'warning' | 'error';
 }
 
 export const SnackBar: React.FunctionComponent<Props> = (props: Props) => {
-    const {snackBarIsOpen, handleCloseSnackBar, message, verticalAnchor, horizontalAnchor, backgroundColor} = props;
+    const {snackBarIsOpen, handleCloseSnackBar, message, verticalAnchor, horizontalAnchor, severity} = props;
 
     return (
-        <Snackbar anchorOrigin={{vertical: verticalAnchor, horizontal: horizontalAnchor}}
-                  open={snackBarIsOpen}
-                  onClose={handleCloseSnackBar}>
-            <SnackbarContent
-                style={{
-                    backgroundColor: backgroundColor
-                }}
-                message="Invalid credentials, use admin/test"
-                action={
-                    <>
-                        <IconButton size="small" aria-label="close" color="inherit" onClick={handleCloseSnackBar}>
-                            <Close/>
-                        </IconButton>
-                    </>
-                }
-            />
+        <Snackbar open={snackBarIsOpen} onClose={handleCloseSnackBar}
+                  anchorOrigin={{vertical: verticalAnchor, horizontal: horizontalAnchor}}>
+            <Alert onClose={handleCloseSnackBar} severity={severity}>
+                {message}
+            </Alert>
         </Snackbar>
     );
 };
@@ -40,5 +27,5 @@ export const SnackBar: React.FunctionComponent<Props> = (props: Props) => {
 SnackBar.defaultProps = {
     verticalAnchor: 'top',
     horizontalAnchor: 'center',
-    backgroundColor: '#272c34'
+    severity: 'info'
 };
