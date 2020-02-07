@@ -46,6 +46,28 @@ module.exports = {
           name: 'assets/img/[name].[ext]?[hash]',
         },
       },
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: [
+          'style-loader',
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                localIdentName: '[name]_[local]_[hash:base64:5]'
+              },
+              localsConvention: 'camelCase',
+            }
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              implementation: require("sass")
+            }
+          }
+        ]
+      },
     ],
   },
   optimization: {
