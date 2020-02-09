@@ -8,24 +8,19 @@ import MenuItem from "@material-ui/core/MenuItem";
 import {HotelEntityVm} from "../hotel-collection/hotel-collection.vm";
 
 const classes = require('./hotel-edit.styles.scss');
-const mockHotel: HotelEntityVm = {
-    picture: "https://material-ui.com/static/images/grid-list/breakfast.jpg",
-    name: "Hotel BellaVista",
-    description: "Beautiful hotel located in Málaga",
-    rating: 4,
-    address: "Málaga",
-    id: "id-mocked",
-};
 
 interface Props {
     hotelId: string;
+    mockHotel: HotelEntityVm;
+    editHotel: (hotel: HotelEntityVm, prop: string, value: any) => void;
+
 }
 
 export const HotelEditComponent: React.FunctionComponent<Props> = (props: Props) => {
-    const {hotelId} = props;
+    const {hotelId, mockHotel, editHotel} = props;
 
-    const editHotelInfo = (propId, newValue) => {
-      console.log(propId, newValue)
+    const editHotelInfo = (prop, value) => {
+      editHotel(mockHotel, prop, value);
     };
 
     return (
@@ -36,7 +31,7 @@ export const HotelEditComponent: React.FunctionComponent<Props> = (props: Props)
                 </div>
                 <TextField fullWidth
                            value={mockHotel.name}
-                           id="hotel-name"
+                           id="name"
                            onChange={(event) => editHotelInfo(event.target.id, event.target.value)}/>
             </div>
 
@@ -52,7 +47,7 @@ export const HotelEditComponent: React.FunctionComponent<Props> = (props: Props)
                 <TextField fullWidth
                            value={mockHotel.picture}
                            onChange={(event) => editHotelInfo(event.target.id, event.target.value)}
-                           id="hotel-picture"/>
+                           id="picture"/>
             </div>
 
             <div className={classes.rowContainer}>
@@ -61,7 +56,7 @@ export const HotelEditComponent: React.FunctionComponent<Props> = (props: Props)
                 </div>
                 <Rating
                     id="hotel-rating"
-                    name="hotel-rating"
+                    name="rating"
                     value={mockHotel.rating}
                     onChange={(event: any, value) => editHotelInfo(event.target.name, value)}
                 />
@@ -90,12 +85,12 @@ export const HotelEditComponent: React.FunctionComponent<Props> = (props: Props)
                            variant="outlined"
                            multiline
                            onChange={(event) => editHotelInfo(event.target.id, event.target.value)}
-                           id="hotel-description"
+                           id="description"
                            rows="4"/>
             </div>
 
             <div className={classes.rowContainer}>
-                <Button variant="contained" color="primary" fullWidth>Save</Button>
+                <Button variant="contained" color="primary" fullWidth onClick={() => console.log(mockHotel)}>Save</Button>
             </div>
         </div>
     );
