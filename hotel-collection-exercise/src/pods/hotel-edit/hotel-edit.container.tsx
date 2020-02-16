@@ -1,9 +1,6 @@
 import * as React from 'react';
 import {HotelEditComponent} from "./hotel-edit.component";
 import {HotelEntityVm} from "../hotel-collection/hotel-collection.vm";
-import {createEmptyLogin, LoginEntityVm} from "../login/login.vm";
-import {linkRoutes, SessionContext} from "core";
-import {validateCredentials} from "../login/login.api";
 
 interface Props {
     hotelId: string;
@@ -29,5 +26,5 @@ export const HotelEditContainer = (props: Props) => {
        setHotel(editedHotel)
     };
 
-    return <HotelEditComponent hotelId={hotelId} mockHotel={initialHotel} editHotel={editHotel}/>;
+    return <HotelEditComponent hotelId={hotelId} initialHotel={initialHotel} editHotel={editHotel}/>;
 };
