@@ -27,7 +27,17 @@ const validationSchema: ValidationSchema = {
                 },
             },
         ],
-        description: [Validators.required.validator],
+        description: [
+            Validators.required.validator,
+            {
+                validator: Validators.minLength,
+                customArgs: { length: 24 },
+            },
+            {
+                validator: Validators.maxLength,
+                customArgs: { length: 256 },
+            },
+        ],
         city: [Validators.required.validator],
     },
 };
