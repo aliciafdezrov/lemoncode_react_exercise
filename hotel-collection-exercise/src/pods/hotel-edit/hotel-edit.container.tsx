@@ -7,7 +7,7 @@ interface Props {
 }
 
 export const createMockedHotel = (): HotelEntityVm => ({
-    picture: "https://material-ui.com/static/images/grid-list/breakfast.jpg",
+    picture: "http://localhost:3000/thumbnails/50947_264_t.jpg",
     name: "Hotel BellaVista",
     description: "Beautiful hotel located in Málaga",
     rating: 4,
