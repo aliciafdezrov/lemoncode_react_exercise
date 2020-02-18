@@ -36,16 +36,12 @@ export const pictureValidator = (fieldValidatorArgs): Promise<ValidationResult> 
                     fieldValidationResult.type = 'INVALID_PICTURE';
                     fieldValidationResult.succeeded = pictureExists;
                     fieldValidationResult.message = pictureExists ? "" : "Must be a picture";
-                    console.log(fieldValidationResult);
-
                     resolve(fieldValidationResult);
                 })
                 :
                 fieldValidationResult.type = 'INVALID_PICTURE';
             fieldValidationResult.succeeded = false;
             fieldValidationResult.message = "Must be a picture";
-            console.log(fieldValidationResult);
-
             resolve(fieldValidationResult);
         });
     });
