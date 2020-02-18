@@ -43,3 +43,26 @@ const getHotelsUrl = `${baseApiUrl}/api/hotels`;
 
 export const getHotelById = (id): Promise<HotelEntityApi> => Axios.get<HotelEntityApi>(`${getHotelsUrl}/${id}`).then(({ data }) => data);
 
+export interface CityEntityApi {
+    code: string;
+    name: string;
+}
+
+const citiesList = [
+    {"name": "Seattle", "code": "SE"},
+    {"name": "Burlingame", "code": "BUR"},
+    {"name": "Málaga", "code": "MA"},
+    {"name": "Almeria", "code": "AL"},
+    {"name": "Madrid", "code": "M"},
+    {"name": "Jaén", "code": "JA"},
+    {"name": "Valencia", "code": "V"},
+    {"name": "Asturias", "code": "AS"},
+    {"name": "Barcelona", "code": "B"},
+    {"name": "Teruel", "code": "T"},
+    {"name": "Huelva", "code": "HU"},
+    {"name": "Cádiz", "code": "CA"},
+    {"name": "Galicia", "code": "GA"},
+];
+
+export const getCitiesList = (): Promise<CityEntityApi[]> => new Promise<CityEntityApi[]>((resolve, reject) => resolve(citiesList));
+
