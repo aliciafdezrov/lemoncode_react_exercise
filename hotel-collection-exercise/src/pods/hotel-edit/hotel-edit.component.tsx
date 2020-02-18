@@ -91,7 +91,7 @@ export const HotelEditComponent: React.FunctionComponent<Props> = (props: Props)
                             </div>
                             <Field
                                 name="rating"
-                                type="radio"
+                                precision={0.5}
                                 component={Rating}
                                 label="Rating"
                                 validate={(value, _, meta) =>
