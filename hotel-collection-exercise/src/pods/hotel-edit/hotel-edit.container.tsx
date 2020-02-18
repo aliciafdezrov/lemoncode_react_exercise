@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {HotelEditComponent} from "./hotel-edit.component";
-import {HotelEntityVm} from "../hotel-collection/hotel-collection.vm";
-import {mapFromApiToVm} from "../hotel-collection/hotel-collection.mapper";
 import {getHotelById} from "./hotel-edit.api";
+import {HotelEntityVm} from "./hotel-edit.vm";
+import {mapFromApiToVm} from "./hotel-edit.mapper";
 
 interface Props {
     hotelId: string;
@@ -13,7 +13,7 @@ export const createMockedHotel = (): HotelEntityVm => ({
     name: "",
     description: "",
     rating: 0,
-    address: "",
+    city: "",
     id: "",
 });
 

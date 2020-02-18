@@ -1,10 +1,10 @@
 import * as React from 'react';
 import InputLabel from "@material-ui/core/InputLabel";
 import Button from "@material-ui/core/Button";
-import {HotelEntityVm} from "../hotel-collection/hotel-collection.vm";
 import {Field, Form} from "react-final-form";
 import {formValidation} from "./hotel-edit.validation";
 import {Rating, SelectField, TextField} from "../../common/components/forms";
+import {HotelEntityVm} from "./hotel-edit.vm";
 
 const classes = require('./hotel-edit.styles.scss');
 
