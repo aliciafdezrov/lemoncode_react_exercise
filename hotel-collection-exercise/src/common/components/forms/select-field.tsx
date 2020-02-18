@@ -25,12 +25,13 @@ export const SelectField: React.FunctionComponent<Props> = props => {
                 error={showError}
                 onChange={onChange}
                 value={value}
+                select
                 inputProps={restInput}
                 helperText={showError ? meta.error : ''}
             >
                 {menuItemList.map(option => (
-                    <MenuItem key={option.value} value={option.value}>
-                        {option.label}
+                    <MenuItem key={option.code} value={option.name}>
+                        {option.name}
                     </MenuItem>
                 ))}
             </TextFieldMui>
