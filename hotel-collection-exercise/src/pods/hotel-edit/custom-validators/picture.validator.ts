@@ -30,19 +30,19 @@ export const pictureValidator = (fieldValidatorArgs): Promise<ValidationResult> 
     return new Promise<ValidationResult>((resolve, reject) => {
         const fieldValidationResult: ValidationResult = createDefaultValidationResult();
         isPictureAddressValid(value).then((validationResult: ValidationResult) => {
-            (validationResult.succeeded) ?
+            if (validationResult.succeeded) {
                 pictureExists(value).then(pictureExists => {
-
                     fieldValidationResult.type = 'INVALID_PICTURE';
                     fieldValidationResult.succeeded = pictureExists;
                     fieldValidationResult.message = pictureExists ? "" : "Must be a picture";
                     resolve(fieldValidationResult);
                 })
-                :
+            } else {
                 fieldValidationResult.type = 'INVALID_PICTURE';
-            fieldValidationResult.succeeded = false;
-            fieldValidationResult.message = "Must be a picture";
-            resolve(fieldValidationResult);
+                fieldValidationResult.succeeded = false;
+                fieldValidationResult.message = "Must be a picture";
+                resolve(fieldValidationResult);
+            }
         });
     });
 };
