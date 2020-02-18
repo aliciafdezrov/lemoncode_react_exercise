@@ -12,25 +12,17 @@ const classes = require('./hotel-edit.styles.scss');
 interface Props {
     hotelId: string;
     initialHotel: HotelEntityVm;
-    editHotel: (hotel: HotelEntityVm, prop: string, value: any) => void;
+    editHotel: (hotel: HotelEntityVm) => void;
     citiesList: CityEntityApi[];
 }
 
 export const HotelEditComponent: React.FunctionComponent<Props> = (props: Props) => {
     const {hotelId, initialHotel, editHotel, citiesList} = props;
 
-    const editHotelInfo = (prop, value) => {
-        editHotel(initialHotel, prop, value);
-    };
-
-    const onSave = (values) => {
-        console.log(values)
-    };
-
     return (
         <div className={classes.container}>
             <Form
-                onSubmit={values => onSave(values)}
+                onSubmit={hotelEdited => props.editHotel(hotelEdited)}
                 initialValues={initialHotel}
                 render={({handleSubmit, submitting, pristine, values}) => (
                     <form onSubmit={handleSubmit} noValidate>

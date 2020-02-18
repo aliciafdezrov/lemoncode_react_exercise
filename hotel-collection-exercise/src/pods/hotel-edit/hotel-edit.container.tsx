@@ -42,10 +42,8 @@ export const HotelEditContainer = (props: Props) => {
         loadCitiesList();
     }, []);
 
-    const editHotel = (hotel, propId, newValue) => {
-        let editedHotel = {...hotel};
-        editedHotel[propId] = newValue;
-       setHotel(editedHotel)
+    const editHotel = (hotel) => {
+        console.log(hotel)
     };
 
     return <HotelEditComponent hotelId={hotelId} initialHotel={initialHotel} editHotel={editHotel} citiesList={citiesList}/>;
