@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {HotelEditComponent} from "./hotel-edit.component";
-import {getHotelById} from "./hotel-edit.api";
+import {CityEntityApi, getCitiesList, getHotelById} from "./hotel-edit.api";
 import {HotelEntityVm} from "./hotel-edit.vm";
 import {mapFromApiToVm} from "./hotel-edit.mapper";
 
@@ -19,18 +19,28 @@ export const createMockedHotel = (): HotelEntityVm => ({
 
 export const HotelEditContainer = (props: Props) => {
     const {hotelId} = props;
-
     const [initialHotel, setHotel] = React.useState<HotelEntityVm>(createMockedHotel());
+    const [citiesList, setCitiesList] = React.useState<CityEntityApi[]>([]);
 
-    const loadHotel = () => {
+    const loadHotel = (hotelId) => {
         getHotelById(hotelId).then(result =>
             setHotel(mapFromApiToVm(result))
         );
     };
 
+    const loadCitiesList = () => {
+        return getCitiesList().then(result =>
+            setCitiesList(result)
+        );
+    };
+
     React.useEffect(() => {
-        loadHotel();
+        loadHotel(hotelId);
     }, [hotelId]);
+
+    React.useEffect(() => {
+        loadCitiesList();
+    }, []);
 
     const editHotel = (hotel, propId, newValue) => {
         let editedHotel = {...hotel};
@@ -38,5 +48,5 @@ export const HotelEditContainer = (props: Props) => {
        setHotel(editedHotel)
     };
 
-    return <HotelEditComponent hotelId={hotelId} initialHotel={initialHotel} editHotel={editHotel}/>;
+    return <HotelEditComponent hotelId={hotelId} initialHotel={initialHotel} editHotel={editHotel} citiesList={citiesList}/>;
 };
