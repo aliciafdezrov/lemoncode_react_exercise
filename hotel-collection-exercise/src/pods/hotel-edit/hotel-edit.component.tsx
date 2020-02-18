@@ -5,6 +5,7 @@ import {Field, Form} from "react-final-form";
 import {formValidation} from "./hotel-edit.validation";
 import {Rating, SelectField, TextField} from "../../common/components/forms";
 import {HotelEntityVm} from "./hotel-edit.vm";
+import {CityEntityApi} from "./hotel-edit.api";
 
 const classes = require('./hotel-edit.styles.scss');
 
@@ -12,28 +13,11 @@ interface Props {
     hotelId: string;
     initialHotel: HotelEntityVm;
     editHotel: (hotel: HotelEntityVm, prop: string, value: any) => void;
+    citiesList: CityEntityApi[];
 }
 
-const selectOptions = [
-    {
-        value: 0,
-        label: "Málaga"
-
-    },
-    {
-        value: 1,
-        label: "Granda"
-
-    },
-    {
-        value: 2,
-        label: "Almería"
-
-    }
-];
-
 export const HotelEditComponent: React.FunctionComponent<Props> = (props: Props) => {
-    const {hotelId, initialHotel, editHotel} = props;
+    const {hotelId, initialHotel, editHotel, citiesList} = props;
 
     const editHotelInfo = (prop, value) => {
         editHotel(initialHotel, prop, value);
@@ -103,9 +87,8 @@ export const HotelEditComponent: React.FunctionComponent<Props> = (props: Props)
                                 <InputLabel>City</InputLabel>
                             </div>
                             <Field
-                                fullWidth
                                 name="city"
-                                menuItemList={selectOptions}
+                                menuItemList={citiesList}
                                 component={SelectField}
                                 validate={(value, _, meta) =>
                                     formValidation.validateField(meta.name, value)
