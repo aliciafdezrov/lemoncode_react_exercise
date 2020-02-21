@@ -9,72 +9,71 @@ import Button from '@material-ui/core/Button';
 import {LoginEntityVm} from './login.vm';
 import {formValidation} from './login.validation';
 import {SnackBar} from "../../common/components/snackbar";
+const classesStyles = require("./login.styles.scss");
 
 const useStyles = makeStyles({
-  formContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-  },
+    formContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+    }
 });
 
 interface Props {
-  onLogin: (loginInfo: LoginEntityVm) => void;
-  initialLogin: LoginEntityVm;
-  snackBarIsOpen: boolean;
-  handleCloseSnackBar: () => void;
+    onLogin: (loginInfo: LoginEntityVm) => void;
+    initialLogin: LoginEntityVm;
+    snackBarIsOpen: boolean;
+    handleCloseSnackBar: () => void;
 }
 
 export const LoginComponent: React.FunctionComponent<Props> = props => {
-  const classes = useStyles(props);
-  const { onLogin, initialLogin, snackBarIsOpen, handleCloseSnackBar } = props;
+    const classes = useStyles(props);
+    const {onLogin, initialLogin, snackBarIsOpen, handleCloseSnackBar} = props;
 
-  return (
-    <Card>
-      <CardHeader title="Login" />
-        <SnackBar message={"Invalid credentials, use admin/test"}
-                  snackBarIsOpen={snackBarIsOpen}
-                  handleCloseSnackBar={handleCloseSnackBar}
-                  severity={'error'}/>
-      <CardContent>
-        <div className={classes.formContainer}>
-          <Form
-            onSubmit={values => onLogin(values)}
-            initialValues={initialLogin}
-            render={({ handleSubmit, submitting, pristine, values }) => (
-              <form onSubmit={handleSubmit} noValidate>
-                <Field
-                  fullWidth
-                  name="login"
-                  component={TextField}
-                  type="text"
-                  label="Name"
-                  validate={(value, _, meta) =>
-                    formValidation.validateField(meta.name, value)
-                  }
-                />
-                <Field
-                  fullWidth
-                  name="password"
-                  component={TextField}
-                  type="password"
-                  label="Password"
-                  validate={(value, _, meta) =>
-                    formValidation.validateField(meta.name, value)
-                  }
-                />
-                <Button type="submit" variant="contained" color="primary">
-                  Login
-                </Button>
-                <pre>{JSON.stringify(values, undefined, 2)}</pre>
-                <Field name="login">
-                  {props => <pre>{JSON.stringify(props, undefined, 2)}</pre>}
-                </Field>
-              </form>
-            )}
-          />
+    return (
+        <div className={classesStyles.container}>
+            <Card>
+                <CardHeader title="Login"/>
+                <SnackBar message={"Invalid credentials, use admin/test"}
+                          snackBarIsOpen={snackBarIsOpen}
+                          handleCloseSnackBar={handleCloseSnackBar}
+                          severity={'error'}/>
+                <CardContent>
+                    <div className={classes.formContainer}>
+                        <Form
+                            onSubmit={values => onLogin(values)}
+                            initialValues={initialLogin}
+                            render={({handleSubmit, submitting, pristine, values}) => (
+                                <form onSubmit={handleSubmit} noValidate>
+                                    <Field
+                                        fullWidth
+                                        name="login"
+                                        component={TextField}
+                                        type="text"
+                                        label="Name"
+                                        validate={(value, _, meta) =>
+                                            formValidation.validateField(meta.name, value)
+                                        }
+                                    />
+                                    <Field
+                                        fullWidth
+                                        name="password"
+                                        component={TextField}
+                                        type="password"
+                                        label="Password"
+                                        validate={(value, _, meta) =>
+                                            formValidation.validateField(meta.name, value)
+                                        }
+                                    />
+                                    <Button type="submit" variant="contained" color="primary">
+                                        Login
+                                    </Button>
+                                </form>
+                            )}
+                        />
+                    </div>
+                </CardContent>
+            </Card>
         </div>
-      </CardContent>
-    </Card>
-  );
+    );
 };

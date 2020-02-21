@@ -61,7 +61,7 @@ export const HotelEditComponent: React.FunctionComponent<Props> = (props: Props)
                             />
                         </div>
 
-                        <div className={classes.rowContainer}>
+                        <div className={classes.ratingAndSelector}>
                             <div className={classes.inputLabel}>
                                 <InputLabel>Rating</InputLabel>
                             </div>
@@ -78,14 +78,18 @@ export const HotelEditComponent: React.FunctionComponent<Props> = (props: Props)
                             <div className={classes.inputLabel}>
                                 <InputLabel>City</InputLabel>
                             </div>
-                            <Field
-                                name="city"
-                                menuItemList={citiesList}
-                                component={SelectField}
-                                validate={(value, _, meta) =>
-                                    formValidation.validateField(meta.name, value)
-                                }
-                            />
+
+                            <div className={classes.selectContainer}>
+                                <Field
+                                    fullWidth
+                                    name="city"
+                                    menuItemList={citiesList}
+                                    component={SelectField}
+                                    validate={(value, _, meta) =>
+                                        formValidation.validateField(meta.name, value)
+                                    }
+                                />
+                            </div>
                         </div>
 
                         <div className={classes.rowContainer}>
