@@ -1,17 +1,8 @@
 import * as React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
 import {HotelEntityVm} from './hotel-collection.vm';
 import {HotelCard} from './components/hotel-card.component';
 
 const classes = require("./hotel-collection.styles.scss");
-
-const useStyles = makeStyles({
-    listLayout: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-between',
-    },
-});
 
 interface Props {
     hotelCollection: HotelEntityVm[];
@@ -19,7 +10,6 @@ interface Props {
 
 export const HotelCollectionComponent: React.FunctionComponent<Props> = props => {
     const {hotelCollection} = props;
-    //const classes = useStyles(props);
 
     return (
         <div className={classes.mainSection}>
