@@ -15,6 +15,7 @@ module.exports = {
       layouts: path.resolve(__dirname, "./src/layouts/"),
       model: path.resolve(__dirname, "./src/model/"),
       scenes: path.resolve(__dirname, "./src/scenes/"),
+      pods: path.resolve(__dirname, "./src/pods"),
     },
   },
   entry: ["./main.tsx"],

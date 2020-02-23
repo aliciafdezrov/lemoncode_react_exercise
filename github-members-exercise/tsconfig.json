@@ -19,7 +19,8 @@
       "core": ["core"],
       "layouts": ["layouts"],
       "model": ["model"],
-      "scenes": ["scenes"]
+      "scenes": ["scenes"],
+      "pods": ["pods"]
     },
     "include": ["./src/**/*"]
   }
