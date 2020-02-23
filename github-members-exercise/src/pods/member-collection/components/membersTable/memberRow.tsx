@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {MemberEntity} from '../../model/member';
+import {MemberEntity} from '../../../../model/member';
 import {columns} from "./memberHead";
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import {Avatar} from "@material-ui/core";
-import {linkRoutes} from "../../core";
+import {linkRoutes} from "../../../../core";
 import {Link} from "react-router-dom";
 
 export const MemberRow = (props: { member: MemberEntity }) =>

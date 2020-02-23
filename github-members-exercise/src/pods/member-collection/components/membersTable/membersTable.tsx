@@ -1,7 +1,7 @@
 import * as React from "react";
 import {useEffect, useRef} from "react";
-import {MemberEntity} from "../../model/member";
-import {memberAPI} from "../../api/memberAPI";
+import {MemberEntity} from "../../../../model/member";
+import {memberAPI} from "../../../../api/memberAPI";
 import {MemberHead} from "./memberHead";
 import {TableBody} from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
@@ -13,11 +13,12 @@ import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from '@material-ui/icons/Search';
 import {MemberFooter} from "./memberFooter";
 import {trackPromise} from 'react-promise-tracker';
-import {LoadingIndicator} from "../loader";
+import {LoadingIndicator} from "../../../../components/loader";
 
 const classes = require('./membersTable.scss');
 
 interface Props {
+    members: MemberEntity[];
 }
 
 export const MembersTableComponent = (props: Props) => {

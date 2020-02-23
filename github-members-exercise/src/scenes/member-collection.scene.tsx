@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {MembersTableComponent} from "components";
 import {CenteredLayout} from "layouts";
+import {MemberCollectionContainer} from "pods";
 
 export const MemberCollectionScene = () => (
     <CenteredLayout>
         <h1> Members Page</h1>
-        <MembersTableComponent/>
+        <MemberCollectionContainer/>
     </CenteredLayout>
 );
