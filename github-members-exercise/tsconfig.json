@@ -20,7 +20,8 @@
       "layouts": ["layouts"],
       "model": ["model"],
       "scenes": ["scenes"],
-      "pods": ["pods"]
+      "pods": ["pods"],
+      "common": ["common"]
     },
     "include": ["./src/**/*"]
   }
