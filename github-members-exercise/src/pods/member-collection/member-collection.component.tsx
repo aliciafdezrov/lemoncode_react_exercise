@@ -4,14 +4,18 @@ import {MemberEntity} from "../../model/member";
 
 interface Props {
     members: MemberEntity[];
+    organizationName: string;
+    onChangeOrganizationName: (newName: string) => void;
 }
 
 export const MemberCollectionComponent = (props: Props) => {
-    const {members} = props;
+    const {members, organizationName, onChangeOrganizationName} = props;
 
     return (
         <>
-            <MembersTableComponent members={members}/>
+            <MembersTableComponent members={members}
+                                   organizationName={organizationName}
+                                   onChangeOrganizationName={onChangeOrganizationName}/>
         </>
     );
 };

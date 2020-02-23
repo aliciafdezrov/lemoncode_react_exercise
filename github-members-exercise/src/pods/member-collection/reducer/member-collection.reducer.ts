@@ -18,6 +18,9 @@ export const memberCollectionReducer = (
     switch (action.type) {
         case actionsEnums.UPDATE_MEMBER_COLLECTION:
             return handleMemberCollectionAction(state, action.members);
+
+        case actionsEnums.SET_ORGANIZATION_NAME:
+            return handleSetOrganizationNameAction(state, action.organizationName);
     }
     return state;
 };
@@ -28,4 +31,12 @@ const handleMemberCollectionAction = (
 ): MemberCollectionState => ({
     ...state,
     members
+});
+
+const handleSetOrganizationNameAction = (
+    state: MemberCollectionState,
+    organizationName
+): MemberCollectionState => ({
+    ...state,
+    organizationName
 });

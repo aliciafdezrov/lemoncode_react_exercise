@@ -1,5 +1,6 @@
 import { actionsEnums } from "common";
 import {MemberEntity} from "../../../model/member";
+import {memberAPI} from "../../../api/memberAPI";
 
 export interface IUpdateMemberCollectionAction {
     type: string;
