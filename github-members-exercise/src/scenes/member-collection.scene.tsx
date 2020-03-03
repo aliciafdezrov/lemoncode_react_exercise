@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {CenteredLayout} from "layouts";
-import {MemberCollectionContainer} from "pods";
+import {MemberCollectionContainer} from "../pods/member-collection";
 
 export const MemberCollectionScene = () => (
     <CenteredLayout>
