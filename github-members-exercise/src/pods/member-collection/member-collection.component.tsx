@@ -4,7 +4,7 @@ import {MembersTableComponent} from "./components/membersTable/membersTable";
 import {MemberEntity} from "../../model/member";
 import TextField from "@material-ui/core/TextField";
 import IconButton from "@material-ui/core/IconButton";
-import SearchIcon from "@material-ui/core/SvgIcon/SvgIcon";
+import SearchIcon from '@material-ui/icons/Search';
 import Paper from "@material-ui/core/Paper";
 import {LoadingIndicator} from "../../components/loader";
 
