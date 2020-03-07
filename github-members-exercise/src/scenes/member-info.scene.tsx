@@ -1,10 +1,13 @@
 import * as React from 'react';
-import {MemberCardComponent} from "components";
 import {CenteredLayout} from "layouts";
+import {CustomHeaderComponent} from "../components/customHeader";
+import {MemberDetailsContainer} from "../pods/member-details/member-details.container";
 
 export const MemberInfoScene = () => (
-    <CenteredLayout>
-        <h1>Member details</h1>
-        <MemberCardComponent/>
-    </CenteredLayout>
+    <>
+        <CustomHeaderComponent text='Member details'/>
+        <CenteredLayout>
+            <MemberDetailsContainer/>
+        </CenteredLayout>
+    </>
 );

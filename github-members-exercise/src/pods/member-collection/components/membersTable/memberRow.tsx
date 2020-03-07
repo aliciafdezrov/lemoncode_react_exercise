@@ -4,7 +4,7 @@ import {columns} from "./memberHead";
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import {Avatar} from "@material-ui/core";
-import {linkRoutes} from "../../../../core";
+import {linkRoutes} from "core";
 import {Link} from "react-router-dom";
 
 export const MemberRow = (props: { member: MemberEntity }) =>
@@ -14,14 +14,14 @@ export const MemberRow = (props: { member: MemberEntity }) =>
             if (column.id == "avatar_url")
                 return (<TableCell key={column.id}>
                     <Avatar alt="Remy Sharp" src={value}/>
-                </TableCell>)
+                </TableCell>);
             else if (column.id == "navigation_link")
                 return (<TableCell key={column.id}>
                     <Link to={linkRoutes.memberInfo(props.member.login)}>Member details</Link>
-                </TableCell>)
+                </TableCell>);
             else
                 return (<TableCell key={column.id}>
                     {value}
                 </TableCell>)
         })}
-    </TableRow>
+    </TableRow>;

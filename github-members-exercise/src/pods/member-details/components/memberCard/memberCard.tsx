@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -11,16 +11,13 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import {red} from '@material-ui/core/colors';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import {useParams} from 'react-router-dom';
-import {memberAPI} from "../../api/memberAPI";
-import {createDefaultMemberEntity, MemberEntity} from "../../model/member";
-import {LoadingIndicator} from "../loader";
-import {trackPromise} from 'react-promise-tracker';
+import {MemberEntity} from "../../../../model/member";
+import {LoadingIndicator} from "../../../../components/loader";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            maxWidth: 345,
+            width: '70vw',
         },
         media: {
             height: 0,
@@ -42,22 +39,14 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export const MemberCardComponent = (props) => {
+interface Props {
+    memberInfo: MemberEntity;
+}
+
+export const MemberCardComponent = (props: Props) => {
     const classes = useStyles();
-    const [expanded, setExpanded] = React.useState(false);
-    const [memberInfo, setMemberInfo] = React.useState<MemberEntity>(createDefaultMemberEntity());
-    const params = useParams();
-
-    useEffect(() => {
-        loadMemberInfo();
-    }, []);
-
-    const loadMemberInfo = () => {
-        trackPromise(
-            memberAPI.getSingleMemberByLogin(params.id).then(member => setMemberInfo(member))
-        );
-    };
-
+    const [expanded, setExpanded] = React.useState(true);
+    const {memberInfo} = props;
 
     const handleExpandClick = () => {
         setExpanded(!expanded);

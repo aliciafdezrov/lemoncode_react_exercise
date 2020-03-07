@@ -4,4 +4,5 @@ export const actionsEnums = {
     SET_ROWS_PER_PAGE: '[2] Set rows per page',
     SET_PAGE: '[3] Set page',
     SET_TOTAL_MEMBERS: '[4] Set total members',
+    SET_MEMBER: '[5] Set member',
 };
