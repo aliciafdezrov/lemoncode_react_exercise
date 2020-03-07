@@ -6,6 +6,7 @@ export interface MemberCollectionState {
     members: MemberEntity[];
     rowsPerPage: number;
     page: number;
+    totalMembers: number;
 }
 
 const defaultMemberCollectionState = (): MemberCollectionState => ({
@@ -13,6 +14,7 @@ const defaultMemberCollectionState = (): MemberCollectionState => ({
     members: [],
     rowsPerPage: 5,
     page: 0,
+    totalMembers: 0,
 });
 
 export const memberCollectionReducer = (
@@ -32,6 +34,8 @@ export const memberCollectionReducer = (
         case actionsEnums.SET_PAGE:
             return handleSetPageAction(state, action.page);
 
+        case actionsEnums.SET_TOTAL_MEMBERS:
+            return handleSetTotalMembersAction(state, action.totalMembers);
     }
     return state;
 };
@@ -66,4 +70,12 @@ const handleSetPageAction = (
 ): MemberCollectionState => ({
     ...state,
     page
+});
+
+const handleSetTotalMembersAction = (
+    state: MemberCollectionState,
+    totalMembers
+): MemberCollectionState => ({
+    ...state,
+    totalMembers
 });

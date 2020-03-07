@@ -4,10 +4,10 @@ import {memberAPI} from "../../../api/memberAPI";
 
 export interface IUpdateMemberCollectionAction {
     type: string;
-    memberCollection: MemberEntity[];
+    members: MemberEntity[];
 }
 
-export const updateMemberCollectionAction = (memberCollection: MemberEntity[]): IUpdateMemberCollectionAction => ({
+export const updateMemberCollectionAction = (members: MemberEntity[]): IUpdateMemberCollectionAction => ({
     type: actionsEnums.UPDATE_MEMBER_COLLECTION,
-    memberCollection
+    members
 });

@@ -1,14 +1,11 @@
 import * as React from "react";
-import {useEffect, useRef} from "react";
 import {MemberEntity} from "../../../../model/member";
-import {memberAPI} from "../../../../api/memberAPI";
 import {MemberHead} from "./memberHead";
 import {TableBody} from "@material-ui/core";
 import TableContainer from "@material-ui/core/TableContainer";
 import Table from "@material-ui/core/Table";
 import {MemberRow} from "./memberRow";
 import {MemberFooter} from "./memberFooter";
-import {trackPromise} from 'react-promise-tracker';
 
 interface Props {
     members: MemberEntity[];

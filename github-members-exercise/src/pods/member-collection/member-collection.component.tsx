@@ -21,20 +21,34 @@ interface DispatchProps {
     onChangeOrganizationName: (newName: string) => void;
     onChangeRowsPerPage: (rowsPerPage: number) => void;
     onChangePage: (page: number) => void;
-    onLoadMembers?: (page?: number, rowsPerPage?: number) => void;
 }
 
-export const MemberCollectionComponent = (props: Props & DispatchProps) => {
-    const {members, organizationName, onChangeOrganizationName, onLoadMembers, rowsPerPage, onChangeRowsPerPage, page, onChangePage} = props;
+interface MergeProps {
+    onLoadMembers: () => void;
+    onLoadComponent: () => void;
+}
+
+export const MemberCollectionComponent = (props: Props & DispatchProps & MergeProps) => {
+    const {
+        members,
+        organizationName,
+        onChangeOrganizationName,
+        onLoadMembers,
+        rowsPerPage,
+        onChangeRowsPerPage,
+        page,
+        onChangePage,
+        onLoadComponent
+    } = props;
     const firstRender = useRef(true);
 
-    /*useEffect(() => {
-        firstRender.current ? firstRender.current = false : onLoadMembers(page + 1, rowsPerPage)
-    }, [page, rowsPerPage]);*/
+    useEffect(() => {
+        firstRender.current ? firstRender.current = false : onLoadMembers()
+    }, [page, rowsPerPage]);
 
-    const loadMembers = () => {
+    const initialLoad = () => {
         onChangePage(0);
-        onLoadMembers()
+        onLoadComponent();
     };
 
     return (
@@ -48,7 +62,7 @@ export const MemberCollectionComponent = (props: Props & DispatchProps) => {
                     size="small"
                     onChange={(event) => onChangeOrganizationName(event.target.value)}
                 />
-                <IconButton aria-label="search" onClick={loadMembers}>
+                <IconButton aria-label="search" onClick={initialLoad}>
                     <SearchIcon/>
                 </IconButton>
             </div>
