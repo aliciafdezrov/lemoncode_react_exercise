@@ -3,6 +3,7 @@ import {MemberCardComponent} from "./components/memberCard/memberCard";
 import {MemberEntity} from "../../model/member";
 import {useEffect} from "react";
 import {useParams} from 'react-router-dom';
+import {LoadingIndicator} from "../../components/loader";
 
 interface Props {
     member: MemberEntity
@@ -21,6 +22,8 @@ export const MemberDetailsComponent = (props: Props & DispatchProps) => {
     }, []);
 
     return (
-        <MemberCardComponent memberInfo={member}/>
+        <LoadingIndicator area="member-details">
+            <MemberCardComponent memberInfo={member}/>
+        </LoadingIndicator>
     );
 };

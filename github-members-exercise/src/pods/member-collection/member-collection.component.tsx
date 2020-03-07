@@ -66,7 +66,7 @@ export const MemberCollectionComponent = (props: Props & DispatchProps & MergePr
                     <SearchIcon/>
                 </IconButton>
             </div>
-            <LoadingIndicator>
+            <LoadingIndicator area="members-collection-table">
                 <Paper>
                     <MembersTableComponent members={members}
                                            page={page}
