@@ -25,8 +25,7 @@ interface DispatchProps {
 }
 
 export const MemberCollectionComponent = (props: Props & DispatchProps) => {
-    const {members, organizationName, onChangeOrganizationName, onLoadMembers, rowsPerPage, onChangeRowsPerPage} = props;
-    const [page, setPage] = React.useState<number>(0);
+    const {members, organizationName, onChangeOrganizationName, onLoadMembers, rowsPerPage, onChangeRowsPerPage, page, onChangePage} = props;
     const firstRender = useRef(true);
 
     /*useEffect(() => {
@@ -34,7 +33,7 @@ export const MemberCollectionComponent = (props: Props & DispatchProps) => {
     }, [page, rowsPerPage]);*/
 
     const loadMembers = () => {
-        setPage(0);
+        onChangePage(0);
         onLoadMembers()
     };
 
@@ -58,7 +57,7 @@ export const MemberCollectionComponent = (props: Props & DispatchProps) => {
                     <MembersTableComponent members={members}
                                            page={page}
                                            totalMembers={10}
-                                           onChangePage={(newPage) => setPage(newPage)}
+                                           onChangePage={(newPage) => onChangePage(newPage)}
                                            onChangeRowsPerPage={(rowsPerPage1 => onChangeRowsPerPage(rowsPerPage1))}
                                            rowsPerPage={rowsPerPage}/>
                 </Paper>

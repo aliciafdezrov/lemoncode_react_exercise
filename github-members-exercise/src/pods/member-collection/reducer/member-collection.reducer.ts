@@ -29,6 +29,9 @@ export const memberCollectionReducer = (
         case actionsEnums.SET_ROWS_PER_PAGE:
             return handleSetRowsPerPageAction(state, action.rowsPerPage);
 
+        case actionsEnums.SET_PAGE:
+            return handleSetPageAction(state, action.page);
+
     }
     return state;
 };
@@ -55,4 +58,12 @@ const handleSetRowsPerPageAction = (
 ): MemberCollectionState => ({
     ...state,
     rowsPerPage
+});
+
+const handleSetPageAction = (
+    state: MemberCollectionState,
+    page
+): MemberCollectionState => ({
+    ...state,
+    page
 });
