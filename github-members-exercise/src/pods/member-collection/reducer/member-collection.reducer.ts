@@ -4,11 +4,15 @@ import {actionsEnums} from "common";
 export interface MemberCollectionState {
     organizationName: string;
     members: MemberEntity[];
+    rowsPerPage: number;
+    page: number;
 }
 
 const defaultMemberCollectionState = (): MemberCollectionState => ({
     organizationName: "lemoncode",
-    members: []
+    members: [],
+    rowsPerPage: 5,
+    page: 0,
 });
 
 export const memberCollectionReducer = (
@@ -21,6 +25,10 @@ export const memberCollectionReducer = (
 
         case actionsEnums.SET_ORGANIZATION_NAME:
             return handleSetOrganizationNameAction(state, action.organizationName);
+
+        case actionsEnums.SET_ROWS_PER_PAGE:
+            return handleSetRowsPerPageAction(state, action.rowsPerPage);
+
     }
     return state;
 };
@@ -39,4 +47,12 @@ const handleSetOrganizationNameAction = (
 ): MemberCollectionState => ({
     ...state,
     organizationName
+});
+
+const handleSetRowsPerPageAction = (
+    state: MemberCollectionState,
+    rowsPerPage
+): MemberCollectionState => ({
+    ...state,
+    rowsPerPage
 });

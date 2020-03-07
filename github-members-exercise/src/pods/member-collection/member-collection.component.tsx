@@ -13,22 +13,25 @@ const classes = require('./member-collection.scss');
 interface Props {
     members: MemberEntity[];
     organizationName: string;
+    rowsPerPage: number;
+    page: number;
 }
 
 interface DispatchProps {
     onChangeOrganizationName: (newName: string) => void;
+    onChangeRowsPerPage: (rowsPerPage: number) => void;
+    onChangePage: (page: number) => void;
     onLoadMembers?: (page?: number, rowsPerPage?: number) => void;
 }
 
 export const MemberCollectionComponent = (props: Props & DispatchProps) => {
-    const {members, organizationName, onChangeOrganizationName, onLoadMembers} = props;
-    const [rowsPerPage, setRowsPerPage] = React.useState<number>(5);
+    const {members, organizationName, onChangeOrganizationName, onLoadMembers, rowsPerPage, onChangeRowsPerPage} = props;
     const [page, setPage] = React.useState<number>(0);
     const firstRender = useRef(true);
 
-    useEffect(() => {
-        firstRender.current ? firstRender.current = false : onLoadMembers(page+1, rowsPerPage)
-    }, [page, rowsPerPage]);
+    /*useEffect(() => {
+        firstRender.current ? firstRender.current = false : onLoadMembers(page + 1, rowsPerPage)
+    }, [page, rowsPerPage]);*/
 
     const loadMembers = () => {
         setPage(0);
@@ -36,30 +39,30 @@ export const MemberCollectionComponent = (props: Props & DispatchProps) => {
     };
 
     return (
-            <div className={classes.contentRow}>
-                <div className={classes.searcherRow}>
-                    <TextField
-                        required
-                        id="filled-required"
-                        label="Required"
-                        value={organizationName}
-                        size="small"
-                        onChange={(event) => onChangeOrganizationName(event.target.value)}
-                    />
-                    <IconButton aria-label="search" onClick={loadMembers}>
-                        <SearchIcon/>
-                    </IconButton>
-                </div>
-                <LoadingIndicator>
-                    <Paper>
-            <MembersTableComponent members={members}
-                                   page={page}
-                                   totalMembers={10}
-                                   onChangePage={(newPage) => setPage(newPage)}
-                                   onChangeRowsPerPage={(rowsPerPage1 => setRowsPerPage(rowsPerPage1))}
-                                   rowsPerPage={rowsPerPage}/>
-                    </Paper>
-                </LoadingIndicator>
+        <div className={classes.contentRow}>
+            <div className={classes.searcherRow}>
+                <TextField
+                    required
+                    id="filled-required"
+                    label="Required"
+                    value={organizationName}
+                    size="small"
+                    onChange={(event) => onChangeOrganizationName(event.target.value)}
+                />
+                <IconButton aria-label="search" onClick={loadMembers}>
+                    <SearchIcon/>
+                </IconButton>
             </div>
+            <LoadingIndicator>
+                <Paper>
+                    <MembersTableComponent members={members}
+                                           page={page}
+                                           totalMembers={10}
+                                           onChangePage={(newPage) => setPage(newPage)}
+                                           onChangeRowsPerPage={(rowsPerPage1 => onChangeRowsPerPage(rowsPerPage1))}
+                                           rowsPerPage={rowsPerPage}/>
+                </Paper>
+            </LoadingIndicator>
+        </div>
     );
 };
