@@ -6,7 +6,6 @@ export const CenteredLayout: React.FunctionComponent = props => (
             flexDirection: 'column',
             alignItems: 'center',
             width: '100%',
-            height: '100vh',
             boxSizing: 'border-box',
             padding: '2rem',
             overflow: 'auto',

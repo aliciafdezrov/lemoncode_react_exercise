@@ -19,7 +19,10 @@ module.exports = {
       common: path.resolve(__dirname, "./src/common/")
     },
   },
-  entry: ["./main.tsx"],
+  entry: {
+    styles: ["./index.scss"],
+    app: ["./main.tsx"]
+  },
   output: {
     path: path.join(basePath, "dist"),
     filename: "[name].js"
