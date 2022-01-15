@@ -8,19 +8,19 @@ import { Member } from "./member-list.vm";
 export const MemberListContainer: React.FC = () => {
     const [members, setMembers] = React.useState<Member[]>([]);
 
-    const onLoadMemberList = async () => {
-        const apiMemberList = await getMemberList();
+    const onLoadMemberList = async (queryParam: string) => {
+        const apiMemberList = await getMemberList(queryParam);
         const viewModelMemberList = mapMemberListFromApiToVm(apiMemberList);
         setMembers(viewModelMemberList);
     };
 
     React.useEffect(() => {
-        onLoadMemberList();
+        onLoadMemberList("lemoncode");
     }, []);
 
     return (
         <>
-            <MemberListComponent members={members}/>
+            <MemberListComponent members={members} onSearch={onLoadMemberList}/>
         </>
     );
 };
