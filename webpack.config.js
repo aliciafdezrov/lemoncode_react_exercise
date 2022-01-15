@@ -9,7 +9,7 @@ module.exports = {
   },
   devtool: "eval-source-map",
   entry: {
-    app: ["./index.tsx"],
+    app: ["regenerator-runtime/runtime", "./index.tsx"],
   },
   stats: "errors-only",
   output: {
