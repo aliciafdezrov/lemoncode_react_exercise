@@ -9,8 +9,11 @@ export const MemberListContainer: React.FC = () => {
     const [members, setMembers] = React.useState<Member[]>([]);
 
     const onLoadMemberList = async (queryParam: string) => {
-        const apiMemberList = await getMemberList(queryParam);
-        const viewModelMemberList = mapMemberListFromApiToVm(apiMemberList);
+        let viewModelMemberList = [];
+        if(queryParam) {
+            const apiMemberList = await getMemberList(queryParam);
+            viewModelMemberList = mapMemberListFromApiToVm(apiMemberList);
+        }
         setMembers(viewModelMemberList);
     };
 

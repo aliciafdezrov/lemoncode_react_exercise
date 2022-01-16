@@ -1,8 +1,8 @@
 import React from "react";
-import { Link, generatePath } from "react-router-dom";
-import { Member } from "./member-list.vm";
+import {Member} from "./member-list.vm";
 import {MemberTable} from "./components/member-table/member-table.component";
 import {SearchInput} from "../../common/components";
+import {Placeholder} from "../../common/components/placeholder";
 
 interface Props {
     members: Member[];
@@ -16,7 +16,11 @@ export const MemberListComponent: React.FC<Props> = (props) => {
         <>
             <h2>Hello from List page</h2>
             <SearchInput defaultSearch="lemoncode" onSearch={onSearch}/>
-            <MemberTable members={members}/>
+            {members.length ? (
+                <MemberTable members={members}/>
+            ) : (
+                <Placeholder text='No results found. Try a different search to look up for more options.'/>
+            )}
         </>
     );
 };
