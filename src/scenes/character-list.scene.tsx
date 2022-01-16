@@ -1,13 +1,13 @@
 import React from 'react';
-import {MemberListContainer} from '../pods/member-list';
 import {CenteredLayout} from "../layouts/centered.layout";
 import ResponsiveAppBar from "../layouts/app-bar.layout";
+import {CharacterListContainer} from "../pods/character-list/character-list.container";
 
-export const MemberListScene: React.FC = () => {
+export const CharacterListScene: React.FC = () => {
     return (
         <ResponsiveAppBar>
             <CenteredLayout>
-                <MemberListContainer/>
+                <CharacterListContainer/>
             </CenteredLayout>
         </ResponsiveAppBar>
     );
