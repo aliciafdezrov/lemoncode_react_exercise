@@ -15,7 +15,7 @@ export const MemberListComponent: React.FC<Props> = (props) => {
     return (
         <>
             <h2>Hello from List page</h2>
-            <SearchInput defaultSearch="lemoncode" onSearch={onSearch}/>
+            <SearchInput defaultSearch="lemoncode" onSearch={onSearch} placeholder="Search something"/>
             {members.length ? (
                 <MemberTable members={members}/>
             ) : (

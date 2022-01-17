@@ -4,10 +4,11 @@ import TextField from '@mui/material/TextField';
 interface Props {
     defaultSearch: string;
     onSearch: (query: string) => void;
+    placeholder: string;
 }
 
 export const SearchInput: React.FC<Props> = (props) => {
-    const {onSearch, defaultSearch} = props;
+    const {onSearch, defaultSearch, placeholder} = props;
     const [inputValue, setInputValue] = React.useState(defaultSearch);
 
     const handleOnChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,6 +18,6 @@ export const SearchInput: React.FC<Props> = (props) => {
     }
 
     return (
-        <TextField variant="standard" value={inputValue} type="search" onChange={handleOnChangeInput} placeholder="Search something" aria-label="search-input"/>
+        <TextField variant="standard" value={inputValue} type="search" onChange={handleOnChangeInput} placeholder={placeholder}/>
     );
 };
