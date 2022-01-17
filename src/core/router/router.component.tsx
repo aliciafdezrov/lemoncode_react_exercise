@@ -1,8 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import {CharacterListScene, LoginScene} from "../../scenes";
-import {MemberListScene} from "../../scenes/member-list.scene";
-import {MemberDetailScene} from "../../scenes/member-detail.scene";
+import {CharacterListScene, LoginScene, MemberListScene, MemberDetailScene, CharacterDetailScene} from "../../scenes";
 import { switchRoutes } from "./routes";
 
 export const RouterComponent = () => {
@@ -13,6 +11,7 @@ export const RouterComponent = () => {
                 <Route path={switchRoutes.members} element={<MemberListScene />} />
                 <Route path={switchRoutes.memberDetail} element={<MemberDetailScene />} />
                 <Route path={switchRoutes.characters} element={<CharacterListScene/>}/>
+                <Route path={switchRoutes.characterDetail} element={<CharacterDetailScene/>}/>
             </Routes>
         </Router>
     );

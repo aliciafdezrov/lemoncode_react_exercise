@@ -9,6 +9,8 @@ import Typography from "@mui/material/Typography";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import { styled } from '@mui/material/styles';
+import {useNavigate} from "react-router-dom";
+import {routes} from "../../../../core/router";
 
 const CustomizedCard = styled(Card)`
   background: #333333;
@@ -23,10 +25,11 @@ interface Props {
 }
 
 export const CharacterGridItem: React.FC<Props> = (props) => {
+    const navigate = useNavigate();
     const {character} = props;
 
     return (
-        <CustomizedCard sx={{maxWidth: 300}} className={`${classes.card} ${classes.fadeInCard}`}>
+        <CustomizedCard sx={{maxWidth: 300}} className={`${classes.card} ${classes.fadeInCard}`} onClick={() => navigate(routes.characterDetail(character.id.toString()))}>
             <CardActionArea>
                 <CardMedia
                     component="img"

@@ -12,14 +12,17 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Person from '@mui/icons-material/Person';
-
-const pages = ['Github', 'Rick y Morty'];
-const settings = ['Logout'];
+import {routes} from '../core/router';
+import {useNavigate} from "react-router-dom";
 
 const ResponsiveAppBar: React.FC = (props) => {
     const {children} = props;
+    const navigate = useNavigate();
+    const pages = [{label: 'Github', route: routes.members}, {label: 'Rick y Morty', route: routes.characters}];
+    const settings = [{label: 'Logout', route: routes.root}];
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -35,6 +38,11 @@ const ResponsiveAppBar: React.FC = (props) => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    const handleClickNavMenu = (route: string) => {
+        navigate(route);
+        setAnchorElNav(null);
+    }
 
     return (
         <div>
@@ -71,8 +79,8 @@ const ResponsiveAppBar: React.FC = (props) => {
                                 }}
                             >
                                 {pages.map((page) => (
-                                    <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                        <Typography textAlign="center">{page}</Typography>
+                                    <MenuItem key={page.label} onClick={() => handleClickNavMenu(page.route)}>
+                                        <Typography textAlign="center">{page.label}</Typography>
                                     </MenuItem>
                                 ))}
                             </Menu>
@@ -80,11 +88,11 @@ const ResponsiveAppBar: React.FC = (props) => {
                         <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
                             {pages.map((page) => (
                                 <Button
-                                    key={page}
-                                    onClick={handleCloseNavMenu}
+                                    key={page.label}
+                                    onClick={() => handleClickNavMenu(page.route)}
                                     sx={{my: 2, color: 'white', display: 'block'}}
                                 >
-                                    {page}
+                                    {page.label}
                                 </Button>
                             ))}
                         </Box>
@@ -114,8 +122,8 @@ const ResponsiveAppBar: React.FC = (props) => {
                                 onClose={handleCloseUserMenu}
                             >
                                 {settings.map((setting) => (
-                                    <MenuItem key={setting} onClick={handleCloseNavMenu}>
-                                        <Typography textAlign="center">{setting}</Typography>
+                                    <MenuItem key={setting.label} onClick={() => handleClickNavMenu(setting.route)}>
+                                        <Typography textAlign="center">{setting.label}</Typography>
                                     </MenuItem>
                                 ))}
                             </Menu>
