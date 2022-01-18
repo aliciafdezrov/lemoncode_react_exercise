@@ -44,8 +44,9 @@ export const fadeInCard = css`
 
 export const card = css`
   transition: 0.3s;
+  background: #3c3e44;
   &:hover {
-    background: fade-out($secondary, 0.5%);
+    background: fade-out(#3c3e44, 0.5%);
   }
 `;
 
@@ -53,4 +54,5 @@ export const cardContent = css`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background: #3c3e44;
 `;

@@ -16,5 +16,5 @@ export const gridContainer = css`
   row-gap: 20px;
   align-items: start;
   margin-bottom: 5rem;
-  background: #121212;
+  background: #24282f;
 `;
