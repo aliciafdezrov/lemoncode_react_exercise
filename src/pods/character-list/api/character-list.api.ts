@@ -1,8 +1,21 @@
 import {Character} from "./character-list.api-model";
 
-export const getCharacterList = async (): Promise<Character[]> => {
+export const getCharacterList = async (searchTerm: any): Promise<Character[]> => {
     try {
-        const response = await fetch(`https://rickandmortyapi.com/api/character`);
+        let baseUrl= `https://rickandmortyapi.com/api/character`;
+
+        if(Object.keys(searchTerm).some(term => term)) {
+            baseUrl = `${baseUrl}?`;
+
+            for (const [key, value] of Object.entries(searchTerm)) {
+                if(value) {
+                    baseUrl = `${baseUrl}${key}=${value}&`
+                }
+            }
+
+        }
+
+        const response = await fetch(baseUrl);
 
         if (response.ok) {
             const json = await response.json();

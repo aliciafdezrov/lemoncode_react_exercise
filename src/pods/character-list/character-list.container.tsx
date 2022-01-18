@@ -7,14 +7,14 @@ import {Character} from "./character-list.vm";
 export const CharacterListContainer: React.FC = () => {
     const [characters, setCharacters] = React.useState<Character[]>([]);
 
-    const onLoadCharacterList = async () => {
-        const apiCharacterList = await getCharacterList();
+    const onLoadCharacterList = async (searchTerm) => {
+        const apiCharacterList = await getCharacterList(searchTerm);
         const viewModelCharacterList = mapCharacterListFromApiToVm(apiCharacterList);
         setCharacters(viewModelCharacterList);
     };
 
     React.useEffect(() => {
-        onLoadCharacterList();
+        onLoadCharacterList({});
     }, []);
 
     return (

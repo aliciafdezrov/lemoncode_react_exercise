@@ -20,39 +20,38 @@ const queryPaper = css`
 
 interface Props {
     characters: Character[];
-    onSearch: () => void;
+    onSearch: (searchTerm: any) => void;
 }
 
 export const CharacterListComponent: React.FC<Props> = (props) => {
     const {characters, onSearch} = props;
-    const [status, setStatus] = React.useState<string>('');
-    const [gender, setGender] = React.useState<string>('');
+    const [searchTerm, setSearchTerm] = React.useState<any>({name: '', specie: '', type: '', status: '', gender: ''});
 
-    const handleOnSearch = (value: string) => {
-        console.log(value);
-    }
-
-    const handleChangeStatus = (event) => {
-        setStatus(event.target.value);
+    const handleSearch = (key: string) => (value: string) => {
+        const newSearchTerm = {...searchTerm, [key]: value};
+        setSearchTerm(newSearchTerm);
+        onSearch(newSearchTerm);
     };
 
-    const handleChangeGender = (event) => {
-        setGender(event.target.value);
+    const handleChange = (key: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+        const newSearchTerm = {...searchTerm, [key]: event.target.value};
+        setSearchTerm(newSearchTerm);
+        onSearch(newSearchTerm);
     };
 
     return (
         <>
             <h2>Hello from Rick and Morty page</h2>
             <Paper className={queryPaper}>
-                <SearchInput defaultSearch={""} placeholder="Name" onSearch={handleOnSearch}/>
-                <SearchInput defaultSearch={""} placeholder="Specie" onSearch={handleOnSearch}/>
-                <SearchInput defaultSearch={""} placeholder="Type" onSearch={handleOnSearch}/>
+                <SearchInput defaultSearch={searchTerm.name} placeholder="Name" onSearch={handleSearch('name')}/>
+                <SearchInput defaultSearch={searchTerm.specie} placeholder="Specie" onSearch={handleSearch('specie')}/>
+                <SearchInput defaultSearch={searchTerm.type} placeholder="Type" onSearch={handleSearch('type')}/>
                 <FormControl variant="standard" sx={{minWidth: 165}}>
                     <InputLabel>Status</InputLabel>
                     <Select
-                        value={status}
+                        value={searchTerm.status}
                         label="Status"
-                        onChange={handleChangeStatus}
+                        onChange={handleChange('status')}
                     >
                         <MenuItem value={'Alive'}>Alive</MenuItem>
                         <MenuItem value={'Dead'}>Dead</MenuItem>
@@ -62,9 +61,9 @@ export const CharacterListComponent: React.FC<Props> = (props) => {
                 <FormControl variant="standard" sx={{minWidth: 165}}>
                     <InputLabel>Gender</InputLabel>
                     <Select
-                        value={gender}
+                        value={searchTerm.gender}
                         label="Gender"
-                        onChange={handleChangeGender}
+                        onChange={handleChange('gender')}
                     >
                         <MenuItem value={'Female'}>Female</MenuItem>
                         <MenuItem value={'Male'}>Male</MenuItem>
