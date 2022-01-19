@@ -3,10 +3,11 @@ import {Placeholder} from "../../common/components/placeholder";
 import {Character} from "./character-list.vm";
 import {CharacterGrid} from "./components/characters-grid/characters-grid.component";
 import {SearchForm} from "./components/search-form/search-form.component";
+import {SearchTerm} from "./components/search-form/search-form.vm";
 
 interface Props {
     characters: Character[];
-    onSearch: (searchTerm: any) => void;
+    onSearch: (searchTerm: SearchTerm) => void;
 }
 
 export const CharacterListComponent: React.FC<Props> = (props) => {

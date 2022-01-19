@@ -9,4 +9,4 @@ const mapCharacterFromApiToVm = (
 
 export const mapCharacterListFromApiToVm = (
     characterList: apiModel.Character[]
-): viewModel.Character[] => characterList.map(e => mapCharacterFromApiToVm(e));
+): viewModel.Character[] => characterList.map(character => mapCharacterFromApiToVm(character));

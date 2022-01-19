@@ -6,14 +6,15 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import * as classes from "./search-form.component.styles";
 import {SearchInput} from "../../../../common/components";
+import {createInitialSearchTerm, SearchTerm} from "./search-form.vm";
 
 interface Props {
-    onSearch: (searchTerm: any) => void;
+    onSearch: (searchTerm: SearchTerm) => void;
 }
 
 export const SearchForm: React.FC<Props> = (props) => {
     const { onSearch } = props;
-    const [searchTerm, setSearchTerm] = React.useState<any>({name: '', specie: '', type: '', status: '', gender: ''});
+    const [searchTerm, setSearchTerm] = React.useState<SearchTerm>(createInitialSearchTerm());
 
     const handleSearch = (key: string) => (value: string) => {
         const newSearchTerm = {...searchTerm, [key]: value};
@@ -42,9 +43,9 @@ export const SearchForm: React.FC<Props> = (props) => {
                         <MenuItem value="">
                             <em>None</em>
                         </MenuItem>
-                        <MenuItem value={'Alive'}>Alive</MenuItem>
-                        <MenuItem value={'Dead'}>Dead</MenuItem>
-                        <MenuItem value={'Unknown'}>Unknown</MenuItem>
+                        <MenuItem value={'alive'}>Alive</MenuItem>
+                        <MenuItem value={'dead'}>Dead</MenuItem>
+                        <MenuItem value={'unknown'}>Unknown</MenuItem>
                     </Select>
                 </FormControl>
                 <FormControl variant="standard" sx={{minWidth: 165}}>
