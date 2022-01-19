@@ -5,4 +5,6 @@ export const root = css`
   grid-template-columns: 1fr;
   align-items: center;
   margin-top: 2rem;
+  height: 100%;
+  width: 100%;
 `;

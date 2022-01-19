@@ -46,7 +46,7 @@ const ResponsiveAppBar: React.FC = (props) => {
 
     return (
         <div>
-            <AppBar position="static">
+            <AppBar position="static" color="primary">
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
