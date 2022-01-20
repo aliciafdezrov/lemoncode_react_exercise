@@ -7,10 +7,12 @@ interface Props {
     onSearch: (query: string) => void;
     placeholder: string;
     delay?: number;
+    variant?: "outlined" | "standard" | "filled";
+    fullWidth?: boolean;
 }
 
 export const SearchInput: React.FC<Props> = (props) => {
-    const {onSearch, defaultSearch="", placeholder, delay} = props;
+    const {onSearch, defaultSearch="", placeholder, delay, variant, fullWidth} = props;
     const [inputValue, setInputValue] = React.useState(defaultSearch);
     const debouncedValue = useDebounce(inputValue, delay);
 
@@ -24,7 +26,7 @@ export const SearchInput: React.FC<Props> = (props) => {
     }
 
     return (
-        <TextField variant="standard" value={inputValue} type="search" onChange={handleOnChangeInput}
+        <TextField variant={variant} fullWidth={fullWidth} value={inputValue} type="search" onChange={handleOnChangeInput}
                    placeholder={placeholder}/>
     );
 };

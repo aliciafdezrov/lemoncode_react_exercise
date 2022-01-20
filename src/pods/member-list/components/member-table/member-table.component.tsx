@@ -3,13 +3,21 @@ import {Member} from "../../member-list.vm";
 import {MemberTableRow} from "./member-table-row.component";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import TableCell, {tableCellClasses} from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import TablePagination from "@mui/material/TablePagination";
 import TableFooter from "@mui/material/TableFooter";
+import {styled} from '@mui/material/styles';
+
+const StyledTableCell = styled(TableCell)(({theme}) => ({
+    [`&.${tableCellClasses.head}`]: {
+        backgroundColor: theme.palette.common.black,
+        color: theme.palette.common.white,
+    }
+}));
 
 interface Props {
     members: Member[]
@@ -31,21 +39,22 @@ export const MemberTable: React.FC<Props> = (props) => {
 
     return (
         <TableContainer component={Paper}>
-            <Table aria-label="members table">
+            <Table stickyHeader aria-label="members table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>Avatar</TableCell>
-                        <TableCell align="right">Id</TableCell>
-                        <TableCell align="right">Name</TableCell>
+                        <StyledTableCell>Avatar</StyledTableCell>
+                        <StyledTableCell align="right">Id</StyledTableCell>
+                        <StyledTableCell align="right">Name</StyledTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {members.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((member) => <MemberTableRow key={member.id} member={member}/>)}
+                    {members.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((member) => <MemberTableRow
+                        key={member.id} member={member}/>)}
                 </TableBody>
                 <TableFooter>
                     <TableRow>
                         <TablePagination
-                            rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                            rowsPerPageOptions={[5, 10, 25, {label: 'All', value: -1}]}
                             colSpan={3}
                             count={members.length}
                             rowsPerPage={rowsPerPage}

@@ -43,6 +43,7 @@ export const fadeInCard = css`
 `
 
 export const card = css`
+  margin: 30px;
   transition: 0.3s;
   background: #3c3e44;
   &:hover {

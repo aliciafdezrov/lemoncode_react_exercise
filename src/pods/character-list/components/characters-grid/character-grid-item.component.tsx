@@ -28,6 +28,17 @@ export const CharacterGridItem: React.FC<Props> = (props) => {
     const navigate = useNavigate();
     const {character} = props;
 
+    const getChipColorForStatus = (status: string): "error" | "success" | "default" => {
+        switch(status) {
+            case "Dead":
+                return "error";
+            case "Alive":
+                return "success";
+            default:
+                return "default";
+        }
+    }
+
     return (
         <CustomizedCard sx={{maxWidth: 300}} className={`${classes.card} ${classes.fadeInCard}`} onClick={() => navigate(routes.characterDetail(character.id.toString()))}>
             <CardActionArea>
@@ -44,8 +55,8 @@ export const CharacterGridItem: React.FC<Props> = (props) => {
                     </Typography>
 
                     <Stack direction="row" spacing={1}>
-                        <Chip color="primary" label={character.status} variant="outlined"/>
-                        <Chip color="primary" label={character.species} variant="outlined"/>
+                        <Chip style={{color: "white"}} color={getChipColorForStatus(character.status)} label={character.status} />
+                        <Chip color="primary" label={character.species} />
                     </Stack>
                 </CardContent>
             </CardActionArea>

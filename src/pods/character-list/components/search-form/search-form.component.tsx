@@ -30,9 +30,9 @@ export const SearchForm: React.FC<Props> = (props) => {
 
     return (
             <Paper className={classes.queryPaper}>
-                <SearchInput defaultSearch={searchTerm.name} placeholder="Name" onSearch={handleSearch('name')}/>
-                <SearchInput defaultSearch={searchTerm.specie} placeholder="Specie" onSearch={handleSearch('specie')}/>
-                <SearchInput defaultSearch={searchTerm.type} placeholder="Type" onSearch={handleSearch('type')}/>
+                <SearchInput variant="standard" defaultSearch={searchTerm.name} placeholder="Name" onSearch={handleSearch('name')}/>
+                <SearchInput variant="standard" defaultSearch={searchTerm.specie} placeholder="Specie" onSearch={handleSearch('specie')}/>
+                <SearchInput variant="standard" defaultSearch={searchTerm.type} placeholder="Type" onSearch={handleSearch('type')}/>
                 <FormControl variant="standard" sx={{minWidth: 165}}>
                     <InputLabel>Status</InputLabel>
                     <Select

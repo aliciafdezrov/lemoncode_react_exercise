@@ -18,44 +18,55 @@ interface Props {
 export const CharacterDetailComponent: React.FC<Props> = (props) => {
     const {character} = props;
 
+    const getChipColorForStatus = (status: string): "error" | "success" | "default" => {
+        switch (status) {
+            case "Dead":
+                return "error";
+            case "Alive":
+                return "success";
+            default:
+                return "default";
+        }
+    }
+
     return (
-        <Paper>
+        <Paper sx={{alignSelf: "center", maxWidth: 1250}}>
             <div className={classes.root}>
                 <Avatar
                     variant="rounded"
                     src={character.image}
                     alt={character.name}
-                    sx={{width: 200, height: 200}}
+                    sx={{width: 300, height: 300}}
                 />
                 <div>
                     <Typography gutterBottom variant="h5" component="div">
                         {character.name}
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{color: 'gray'}}>
                         Last known location:
                     </Typography>
-                    <Typography variant="body1">
+                    <Typography gutterBottom variant="body1">
                         {character.location.name}
                     </Typography>
 
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{color: 'gray'}}>
                         First seen in:
                     </Typography>
-                    <Typography variant="body1">
+                    <Typography gutterBottom variant="body1">
                         {character.origin.name}
                     </Typography>
 
-                    <Stack direction="row" spacing={1}>
-                        <Chip color="primary" label={character.status} variant="outlined"/>
+                    <Stack style={{paddingTop: 10}} alignItems="flex-end" direction="row" spacing={1}>
+                        <Chip color={getChipColorForStatus(character.status)} label={character.status}
+                              variant="outlined"/>
                         <Chip color="primary" label={character.species} variant="outlined"/>
-                        <Chip color="primary" label={character.gender} variant="outlined"/>
+                        <Chip color="secondary" label={character.gender} variant="outlined"/>
                     </Stack>
                 </div>
 
                 <List dense sx={{
                     width: '100%',
-                    maxWidth: 360,
                     bgcolor: 'background.paper',
                     position: 'relative',
                     overflow: 'auto',

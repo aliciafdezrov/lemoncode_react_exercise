@@ -5,6 +5,7 @@ export const queryPaper = css`
   flex-direction: row;
   justify-content: space-around;
   align-items: baseline;
-  height: 100px;
+  height: 100%;
+  padding: 5%;
   flex-wrap: wrap;
 `;
