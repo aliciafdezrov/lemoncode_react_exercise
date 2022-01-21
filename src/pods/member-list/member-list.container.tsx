@@ -1,29 +1,21 @@
 import React from "react";
-import { Link, generatePath } from "react-router-dom";
-import { getMemberList } from "./api/member-list.api";
-import { MemberListComponent } from "./member-list.component";
-import { mapMemberListFromApiToVm } from "./member-list.mapper";
-import { Member } from "./member-list.vm";
+import {MemberListComponent} from "./member-list.component";
+import {Member} from "./member-list.vm";
+import {useSearch, useSearchQueryParams} from "./member-list.hooks";
 
 export const MemberListContainer: React.FC = () => {
     const [members, setMembers] = React.useState<Member[]>([]);
-
-    const onLoadMemberList = async (queryParam: string) => {
-        let viewModelMemberList = [];
-        if(queryParam) {
-            const apiMemberList = await getMemberList(queryParam);
-            viewModelMemberList = mapMemberListFromApiToVm(apiMemberList);
-        }
-        setMembers(viewModelMemberList);
-    };
+    const {getQueryParam} = useSearchQueryParams();
+    const {onSearch} = useSearch({
+        onLoadMemberList: (vmMemberList) => setMembers(vmMemberList),
+    });
 
     React.useEffect(() => {
-        onLoadMemberList("lemoncode");
+        let searchQuery = getQueryParam("search");
+        onSearch(searchQuery);
     }, []);
 
     return (
-        <>
-            <MemberListComponent members={members} onSearch={onLoadMemberList}/>
-        </>
+        <MemberListComponent members={members} onSearch={onSearch} searchParam={getQueryParam("search")}/>
     );
 };

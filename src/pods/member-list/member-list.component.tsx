@@ -7,10 +7,11 @@ import {Placeholder} from "../../common/components/placeholder";
 interface Props {
     members: Member[];
     onSearch: (query: string) => void;
+    searchParam: string;
 }
 
 export const MemberListComponent: React.FC<Props> = (props) => {
-    const {members, onSearch} = props;
+    const {members, onSearch, searchParam} = props;
 
     return (
         <div style={{padding: '0 5%'}}>
@@ -19,7 +20,7 @@ export const MemberListComponent: React.FC<Props> = (props) => {
                 marginBottom: 20,
                 width: '30%'
             }}>
-                <SearchInput fullWidth={true} variant="outlined" defaultSearch="lemoncode" onSearch={onSearch}
+                <SearchInput fullWidth={true} variant="outlined" defaultSearch={searchParam} onSearch={onSearch}
                              placeholder="Search something"/>
             </div>
             {members.length ? (

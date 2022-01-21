@@ -1,8 +1,7 @@
 import React from "react";
-import {getCharacterDetail} from "./api/character-detail.api";
 import {CharacterDetailComponent} from "./character-detail.component";
-import {mapCharacterFromApiToVm} from "./character-detail.mapper";
-import {Character} from "./character-detail.vm";
+import {Character, createInitialCharacter} from "./character-detail.vm";
+import {useSearch} from "./character-detail.hooks";
 
 interface Props {
     id: string;
@@ -10,16 +9,13 @@ interface Props {
 
 export const CharacterDetailContainer: React.FC<Props> = (props) => {
     const {id} = props;
-    const [character, setCharacter] = React.useState<Character>(null);
-
-    const onLoadCharacterDetail = async (id: string) => {
-        const apiCharacterDetail = await getCharacterDetail(id);
-        const viewModelCharacterDetail = mapCharacterFromApiToVm(apiCharacterDetail);
-        setCharacter(viewModelCharacterDetail);
-    };
+    const [character, setCharacter] = React.useState<Character>(createInitialCharacter());
+    const {onSearch} = useSearch({
+        onLoadCharacter: (vmCharacter) => setCharacter(vmCharacter),
+    });
 
     React.useEffect(() => {
-        onLoadCharacterDetail(id);
+        onSearch(id);
     }, []);
 
     return character && (

@@ -5,7 +5,7 @@ export interface Origin {
 
 export interface Location {
     name: string;
-    url: string ;
+    url: string;
 }
 
 export interface Character {
@@ -22,3 +22,18 @@ export interface Character {
     origin: Origin;
     location: Location;
 }
+
+export const createInitialCharacter = (): Character => ({
+    id: -1,
+    name: "",
+    status: "",
+    species: "",
+    type: "",
+    gender: "",
+    image: "",
+    episode: [],
+    url: "",
+    created: "",
+    origin: {name: "", url: ""},
+    location: {name: "", url: ""},
+});

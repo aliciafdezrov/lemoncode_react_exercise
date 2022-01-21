@@ -1,5 +1,5 @@
 export interface Member {
-    id: string;
+    id: number;
     avatar_url: string;
     login: string;
 }
