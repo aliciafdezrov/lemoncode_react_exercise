@@ -12,17 +12,18 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Person from '@mui/icons-material/Person';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {routes} from '../core/router';
-import {useNavigate} from "react-router-dom";
+import {useMatch, useNavigate} from "react-router-dom";
+import {switchRoutes} from "../core/router/routes";
 
 const ResponsiveAppBar: React.FC = (props) => {
     const {children} = props;
     const navigate = useNavigate();
-    const pages = [{label: 'Github', route: routes.members}, {label: 'Rick y Morty', route: routes.characters}];
-    const settings = [{label: 'Logout', route: routes.root}];
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+    const isCharacterDetail = useMatch({path: switchRoutes.characterDetail});
+    const isMemberDetail = useMatch({path: switchRoutes.memberDetail});
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -50,16 +51,22 @@ const ResponsiveAppBar: React.FC = (props) => {
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
-                            <IconButton
-                                size="large"
-                                aria-label="account of current user"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
-                                onClick={handleOpenNavMenu}
-                                color="inherit"
-                            >
-                                <MenuIcon/>
-                            </IconButton>
+                            {!Boolean(isMemberDetail || isCharacterDetail) ? (
+                                <IconButton
+                                    size="large"
+                                    aria-label="account of current user"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    onClick={handleOpenNavMenu}
+                                    color="inherit"
+                                >
+                                    <MenuIcon/>
+                                </IconButton>
+                            ) : (
+                                <IconButton color="inherit" aria-label="go-back" onClick={() => navigate(-1)}>
+                                    <ArrowBackIcon/>
+                                </IconButton>
+                            )}
                             <Menu
                                 id="menu-appbar"
                                 anchorEl={anchorElNav}
@@ -78,23 +85,36 @@ const ResponsiveAppBar: React.FC = (props) => {
                                     display: {xs: 'block', md: 'none'},
                                 }}
                             >
-                                {pages.map((page) => (
-                                    <MenuItem key={page.label} onClick={() => handleClickNavMenu(page.route)}>
-                                        <Typography textAlign="center">{page.label}</Typography>
-                                    </MenuItem>
-                                ))}
+                                <MenuItem onClick={() => handleClickNavMenu(routes.members)}>
+                                    <Typography textAlign="center">Github members</Typography>
+                                </MenuItem>
+                                <MenuItem onClick={() => handleClickNavMenu(routes.characters)}>
+                                    <Typography textAlign="center">Rick y Morty</Typography>
+                                </MenuItem>
                             </Menu>
                         </Box>
                         <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
-                            {pages.map((page) => (
-                                <Button
-                                    key={page.label}
-                                    onClick={() => handleClickNavMenu(page.route)}
-                                    sx={{my: 2, color: 'white', display: 'block'}}
-                                >
-                                    {page.label}
-                                </Button>
-                            ))}
+                            {!Boolean(isMemberDetail || isCharacterDetail) ? (
+                                <>
+                                    <Button
+                                        onClick={() => handleClickNavMenu(routes.members)}
+                                        sx={{my: 2, color: 'white', display: 'block'}}
+                                    >
+                                        Github members
+                                    </Button>
+
+                                    <Button
+                                        onClick={() => handleClickNavMenu(routes.characters)}
+                                        sx={{my: 2, color: 'white', display: 'block'}}
+                                    >
+                                        Rick y Morty
+                                    </Button>
+                                </>
+                            ) : (
+                                <IconButton color="inherit" aria-label="go-back" onClick={() => navigate(-1)}>
+                                    <ArrowBackIcon/>
+                                </IconButton>
+                            )}
                         </Box>
 
                         <Box sx={{flexGrow: 0}}>
@@ -121,11 +141,9 @@ const ResponsiveAppBar: React.FC = (props) => {
                                 open={Boolean(anchorElUser)}
                                 onClose={handleCloseUserMenu}
                             >
-                                {settings.map((setting) => (
-                                    <MenuItem key={setting.label} onClick={() => handleClickNavMenu(setting.route)}>
-                                        <Typography textAlign="center">{setting.label}</Typography>
-                                    </MenuItem>
-                                ))}
+                                <MenuItem onClick={() => handleClickNavMenu(routes.root)}>
+                                    <Typography textAlign="center">Logout</Typography>
+                                </MenuItem>
                             </Menu>
                         </Box>
                     </Toolbar>
