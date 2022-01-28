@@ -3,7 +3,7 @@ import {createSearchParams, To, useLocation, useNavigate} from "react-router-dom
 import {Member} from "./member-list.vm";
 import {getMemberList} from "./api/member-list.api";
 import {mapMemberListFromApiToVm} from "./member-list.mapper";
-import {routes} from "../../core/router";
+import {routes} from "../../router";
 
 interface Props {
     onLoadMemberList: (vmMembers: Member[]) => void;

@@ -10,7 +10,7 @@ import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import { styled } from '@mui/material/styles';
 import {useNavigate} from "react-router-dom";
-import {routes} from "../../../../core/router";
+import {routes} from "../../../../router";
 
 const CustomizedCard = styled(Card)`
   background: #333333;

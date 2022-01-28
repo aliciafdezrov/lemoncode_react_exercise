@@ -36,12 +36,12 @@ export const LoginComponent: React.FC<Props> = (props) => {
                 <Paper className={classes.paper}>
                     <Typography gutterBottom variant="h5">Log in:</Typography>
                     <FormControl variant="standard">
-                        <InputLabel htmlFor="username">Username: </InputLabel>
+                        <InputLabel htmlFor="username">Username </InputLabel>
                         <Input id="username" value={username}
                                onChange={(e) => setUsername(e.target.value)}/>
                     </FormControl>
                     <FormControl variant="standard">
-                        <InputLabel htmlFor="passsword">Password: </InputLabel>
+                        <InputLabel htmlFor="passsword">Password </InputLabel>
                         <Input id="password" type="password"
                                value={password}
                                onChange={(e) => setPassword(e.target.value)}/>

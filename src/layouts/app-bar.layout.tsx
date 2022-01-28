@@ -13,9 +13,9 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Person from '@mui/icons-material/Person';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import {routes} from '../core/router';
+import {routes} from '../router';
 import {useMatch, useNavigate} from "react-router-dom";
-import {switchRoutes} from "../core/router/routes";
+import {switchRoutes} from "../router/routes";
 
 const ResponsiveAppBar: React.FC = (props) => {
     const {children} = props;

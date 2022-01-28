@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import {CharacterListScene, LoginScene, MemberListScene, MemberDetailScene, CharacterDetailScene} from "../../scenes";
+import {CharacterListScene, LoginScene, MemberListScene, MemberDetailScene, CharacterDetailScene} from "../scenes";
 import { switchRoutes } from "./routes";
 
 export const RouterComponent = () => {

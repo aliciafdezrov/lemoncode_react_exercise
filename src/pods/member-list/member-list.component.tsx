@@ -1,8 +1,7 @@
 import React from "react";
 import {Member} from "./member-list.vm";
 import {MemberTable} from "./components/member-table/member-table.component";
-import {SearchInput} from "../../common/components";
-import {Placeholder} from "../../common/components/placeholder";
+import {SearchInput, Placeholder} from "../../common/components";
 
 interface Props {
     members: Member[];
