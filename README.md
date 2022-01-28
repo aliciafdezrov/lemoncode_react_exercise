@@ -6,8 +6,6 @@
 - El usuario puede navegar a la página de detalle del miembro.
 - El filtrado prevalece tras ir a la página de detalle de un miembro.
 - Paginación en front-end para la lista de miembros.
-- Búsqueda implementada usando debounce.
-- Uso de la librería de Material UI.
 
 # Filtrado personajes de Rick y Morty
 
@@ -19,5 +17,9 @@
   - Tipo: Filtrar por el tipo de personaje.
   - Género: Female, male, genderless or unknown.
 - El usuario puede navegar a la página de detalle del personaje.
+
+## Implementación 
+
 - Búsqueda implementada usando debounce (para los campos de texto libre).
 - Uso de la librería de Material UI.
+- Uso de react-router.
